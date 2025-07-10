@@ -1,6 +1,7 @@
 /// The main base screen with bottom navigation for the Unicode Flutter App.
 ///
-/// Hosts the primary navigation structure and switches between main app screens.
+/// Hosts the primary navigation structure and switches between main app
+/// screens.
 library;
 
 import 'package:auto_route/auto_route.dart';

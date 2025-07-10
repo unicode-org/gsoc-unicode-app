@@ -1,6 +1,7 @@
 /// Utility widget for unfocusing all input fields when tapping outside.
 ///
-/// Implements the 'unfocus when tapping in empty space' behavior for the entire app.
+/// Implements the 'unfocus when tapping in empty space' behavior for the
+/// entire app.
 library;
 
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 /// {@endtemplate}
 class Unfocus extends StatelessWidget {
   /// {@macro b_unfocus}
-  const Unfocus({super.key, required this.child});
+  const Unfocus({required this.child, super.key});
 
   /// Child widget.
   final Widget child;

@@ -5,7 +5,7 @@ import 'package:gsoc_unicode_app/ui/tester/views/multilingual_tester_screen.dart
 
 void main() {
   testWidgets(
-    'MultilingualTesterScreen displays text to compare, font, rendering preview, SearchField',
+    '''MultilingualTesterScreen displays text to compare, font, rendering preview, SearchField''',
     (tester) async {
       await tester.pumpWidget(
         const MaterialApp(home: MultilingualTesterScreen()),

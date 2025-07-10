@@ -1,6 +1,7 @@
 /// Multilingual tester screen for the Unicode Flutter App.
 ///
-/// Allows users to input text, select fonts, and preview multilingual rendering.
+/// Allows users to input text, select fonts, and preview multilingual
+/// rendering.
 library;
 
 import 'package:auto_route/auto_route.dart';

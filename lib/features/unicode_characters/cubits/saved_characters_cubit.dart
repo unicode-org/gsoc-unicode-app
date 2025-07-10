@@ -26,7 +26,7 @@ class SavedCharactersCubit extends Cubit<SavedCharactersState> {
       emit(_Loading(characters: state.characters));
       final savedCharacters = AppStorage.getSavedCharacters();
       emit(_Loaded(characters: savedCharacters));
-    } catch (e) {
+    } on Exception catch (e) {
       emit(_Error(error: e.toString(), characters: state.characters));
     }
   }

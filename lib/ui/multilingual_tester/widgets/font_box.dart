@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// A widget that displays a font box with a checkmark icon.
 class FontBox extends StatelessWidget {
+  /// Creates a [FontBox] widget.
   const FontBox({
     super.key,
   });

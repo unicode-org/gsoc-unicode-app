@@ -15,17 +15,19 @@ import 'package:gsoc_unicode_app/utils/utils.dart';
 /// - [onChanged]: Callback when the text changes.
 /// - [showCursor]: Whether to show the cursor.
 /// - [readOnly]: Whether the field is read-only.
-/// - [isTester]: Whether the field is in tester mode (multi-line, different hint).
+/// - [isTester]: Whether the field is in tester mode (multi-line, different
+/// hint).
 /// - [controller]: The text editing controller for the field.
 class SearchField extends StatelessWidget {
+  /// Creates a [SearchField] widget.
   const SearchField({
-    super.key,
     this.onTap,
     this.onChanged,
     this.showCursor = true,
     this.readOnly = false,
     this.isTester = false,
     this.controller,
+    super.key,
   });
 
   /// Callback when the field is tapped.

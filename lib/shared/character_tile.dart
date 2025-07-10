@@ -1,4 +1,5 @@
-/// A widget that displays a Unicode character tile with its name and code point.
+/// A widget that displays a Unicode character tile with its name and code
+/// point.
 ///
 /// Used in the character list to allow users to select and view details.
 library;
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Displays a tile for a Unicode character, including its symbol, name, and code point.
+/// Displays a tile for a Unicode character, including its symbol, name, and
+/// code point.
 ///
 /// Parameters:
 /// - [character]: The Unicode character to display.
@@ -16,13 +18,14 @@ import 'package:google_fonts/google_fonts.dart';
 /// - [onTap]: Callback when the tile is tapped.
 /// - [isSelected]: Whether the tile is currently selected (for highlighting).
 class CharacterTile extends HookWidget {
+  /// Creates a [CharacterTile] widget.
   const CharacterTile({
-    super.key,
     required this.character,
     required this.characterName,
     required this.codePoint,
     required this.onTap,
     this.isSelected = false,
+    super.key,
   });
 
   /// The Unicode character to display.

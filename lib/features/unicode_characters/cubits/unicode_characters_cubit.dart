@@ -1,6 +1,7 @@
 /// Cubit for managing the list and search/filtering of Unicode characters.
 ///
-/// Loads all Unicode characters from a CSV asset and supports filtering by query.
+/// Loads all Unicode characters from a CSV asset and supports filtering by
+/// query.
 library;
 
 import 'dart:developer';
@@ -21,7 +22,8 @@ class UnicodeCharactersCubit extends Cubit<UnicodeCharactersState> {
   /// Creates a [UnicodeCharactersCubit] with an initial state.
   UnicodeCharactersCubit() : super(const UnicodeCharactersState.initial());
 
-  /// Loads all Unicode characters from the CSV asset, optionally filtering by [filter].
+  /// Loads all Unicode characters from the CSV asset, optionally filtering by
+  /// [filter].
   ///
   /// Emits [_Loading], then [_Loaded] with the list, or [_Error] on failure.
   Future<void> loadUnicodeCharacters({String? filter}) async {
@@ -65,7 +67,7 @@ class UnicodeCharactersCubit extends Cubit<UnicodeCharactersState> {
           ),
         );
       }
-    } catch (e) {
+    } on Exception catch (e) {
       log(e.toString());
       emit(
         _Error(

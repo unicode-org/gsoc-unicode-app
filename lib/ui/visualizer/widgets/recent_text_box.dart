@@ -3,17 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
 import 'package:gsoc_unicode_app/models/models.dart';
 
+/// A widget that displays a recent text box with a character and code point.
 class RecentTextBox extends StatelessWidget {
+  /// Creates a [RecentTextBox] widget.
   const RecentTextBox({
-    super.key,
     required this.character,
     required this.onTap,
+    super.key,
   });
 
-  // Character
+  /// Character.
   final UnicodeCharacter character;
 
-  // Ontap Navigates to character detail screen
+  /// On tap Navigates to character detail screen.
   final VoidCallback onTap;
 
   @override

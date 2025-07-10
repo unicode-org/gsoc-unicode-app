@@ -1,6 +1,7 @@
 /// Utility class for managing persistent storage using Hive.
 ///
-/// Handles saving, retrieving, and removing Unicode characters and recently viewed characters.
+/// Handles saving, retrieving, and removing Unicode characters and recently
+/// viewed characters.
 library;
 
 import 'dart:convert';
@@ -50,7 +51,7 @@ class AppStorage {
       final characterList = [...getSavedCharacters()]..insert(0, character);
       final encoded = jsonEncode(characterList.map((c) => c.toJson()).toList());
       await _box?.put(savedCharactersKey, encoded);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
     }
   }
@@ -65,11 +66,12 @@ class AppStorage {
 
       if (savedCharacters != null) {
         final decoded = jsonDecode(savedCharacters) as List<dynamic>;
-        characterList =
-            decoded.map((e) => UnicodeCharacter.fromJson(e)).toList();
+        characterList = decoded
+            .map((e) => UnicodeCharacter.fromJson(e as Map<String, dynamic>))
+            .toList();
       }
       return characterList;
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
       return [];
     }
@@ -88,7 +90,7 @@ class AppStorage {
 
       final encoded = jsonEncode(characterList.map((c) => c.toJson()).toList());
       await _box?.put(recentCharacterKey, encoded);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
     }
   }
@@ -102,11 +104,13 @@ class AppStorage {
       if (encoded == null) return [];
 
       final decoded = jsonDecode(encoded) as List;
-      final characters =
-          decoded.map((item) => UnicodeCharacter.fromJson(item)).toList();
+      final characters = decoded
+          .map(
+              (item) => UnicodeCharacter.fromJson(item as Map<String, dynamic>))
+          .toList();
 
       return characters.take(5).toList();
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
       return [];
     }
@@ -120,14 +124,18 @@ class AppStorage {
 
       final encoded = jsonEncode(characterList.map((c) => c.toJson()).toList());
       await _box?.put(savedCharactersKey, encoded);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint(e.toString());
     }
   }
 
   /// Sets the box for testing purposes only.
   @visibleForTesting
-  static void setTestBox(Box box) {
-    _box = box as Box<String>;
+  static set testBox(Box<String>? box) {
+    _box = box;
   }
+
+  /// Gets the box for testing purposes only.
+  @visibleForTesting
+  static Box<String>? get testBox => _box;
 }

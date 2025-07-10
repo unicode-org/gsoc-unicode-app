@@ -12,11 +12,14 @@ import 'package:gsoc_unicode_app/storage/storage.dart';
 part 'remove_saved_character_state.dart';
 part 'remove_saved_character_cubit.freezed.dart';
 
-/// Handles removing a Unicode character from the saved list and updating the state.
+/// Handles removing a Unicode character from the saved list and updating the
+/// state.
 ///
-/// Emits removing, removed, and error states. Notifies [SavedCharactersCubit] on changes.
+/// Emits removing, removed, and error states. Notifies [SavedCharactersCubit]
+/// on changes.
 class RemoveSavedCharacterCubit extends Cubit<RemoveSavedCharacterState> {
-  /// Creates a [RemoveSavedCharacterCubit] with a reference to the saved characters cubit.
+  /// Creates a [RemoveSavedCharacterCubit] with a reference to the saved
+  /// characters cubit.
   RemoveSavedCharacterCubit({
     required SavedCharactersCubit savedCharactersCubit,
   })  : _savedCharactersCubit = savedCharactersCubit,
@@ -34,7 +37,7 @@ class RemoveSavedCharacterCubit extends Cubit<RemoveSavedCharacterState> {
       await AppStorage.removeCharacter(character);
       emit(_Removed(character: character));
       await _savedCharactersCubit.getSavedCharacters();
-    } catch (e) {
+    } on Exception catch (e) {
       emit(_Error(error: e.toString()));
       await _savedCharactersCubit.getSavedCharacters();
     }

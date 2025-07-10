@@ -28,6 +28,7 @@ void main() async {
 ///
 /// Sets up routing, theming, and provides BLoC cubits to the widget tree.
 class MainApp extends StatelessWidget {
+  /// Creates a [MainApp] widget.
   MainApp({super.key});
 
   /// The app router for navigation.

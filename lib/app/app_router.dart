@@ -1,6 +1,7 @@
 /// Defines the application's route configuration using AutoRoute.
 ///
-/// This file sets up all the main navigation routes for the Unicode Flutter App.
+/// This file sets up all the main navigation routes for the Unicode Flutter
+///  App.
 library;
 
 import 'package:auto_route/auto_route.dart';

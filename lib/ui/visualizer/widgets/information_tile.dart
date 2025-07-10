@@ -2,24 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
 
+/// A widget that displays a labeled piece of information
+/// (e.g., character detail).
 class InformationTile extends StatelessWidget {
+  /// Creates an [InformationTile].
   const InformationTile({
-    super.key,
     required this.detail,
     required this.info,
     this.lastItem = false,
     this.isFontText = false,
+    super.key,
   });
 
-  // Character detail
+  /// Character detail label.
   final String detail;
 
-  // Character information
+  /// Character information value.
   final String info;
 
+  /// Whether this is the last item (removes bottom border if true).
   final bool lastItem;
 
-  // Using this to decipher font component from character component
+  /// Whether to use font styling for the info text.
   final bool isFontText;
 
   @override

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
 
+/// A widget that displays a settings box with a border and padding.
 class SettingsBox extends StatelessWidget {
-  const SettingsBox({super.key, required this.child});
+  /// Creates a [SettingsBox] widget.
+  const SettingsBox({required this.child, super.key});
 
+  /// Child widget.
   final Widget child;
 
   @override

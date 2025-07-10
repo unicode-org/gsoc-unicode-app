@@ -1,6 +1,7 @@
 /// Screen for exploring and searching Unicode characters.
 ///
-/// Allows users to search, filter, and view recently viewed and all Unicode characters.
+/// Allows users to search, filter, and view recently viewed and all Unicode
+/// characters.
 library;
 
 import 'package:auto_route/auto_route.dart';
@@ -110,7 +111,8 @@ class UnicodeExplorerScreen extends HookWidget {
 
 // `_SearchBarDelegate` for Unicode Explorer
 
-// This delegate is responsible for the persistent search bar at the top of the screen.
+// This delegate is responsible for the persistent search bar at the top of the
+// screen.
 class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   _SearchBarDelegate({this.onChanged});
 
@@ -140,14 +142,13 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
     );
   }
 
+  // 33 (top padding) + 50 (approx SearchField height) + 20 (bottom padding)
   @override
-  double get maxExtent =>
-      33 +
-      50 +
-      20; // 33 (top padding) + 50 (approx SearchField height) + 20 (bottom padding)
+  double get maxExtent => 33 + 50 + 20;
+
+  //  match maxExtent for a fixed search bar
   @override
-  double get minExtent =>
-      33 + 50 + 20; //  match maxExtent for a fixed search bar
+  double get minExtent => 33 + 50 + 20;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
