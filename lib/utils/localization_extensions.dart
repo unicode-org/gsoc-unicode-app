@@ -1,6 +1,7 @@
 /// Extensions on [BuildContext] for safe localization access.
 ///
-/// Ensures that localization is always available, even if not provided by the widget tree.
+/// Ensures that localization is always available, even if not provided by the
+/// widget tree.
 library;
 
 import 'package:flutter/material.dart';

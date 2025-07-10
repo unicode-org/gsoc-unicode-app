@@ -14,15 +14,18 @@ part 'recently_viewed_character_cubit.freezed.dart';
 
 /// Handles saving a Unicode character as recently viewed and updating the list.
 ///
-/// Emits saving, saved, and error states. Notifies [AllRecentCharactersCubit] on changes.
+/// Emits saving, saved, and error states. Notifies [AllRecentCharactersCubit]
+///  on changes.
 class RecentlyViewedCharacterCubit extends Cubit<RecentlyViewedCharacterState> {
-  /// Creates a [RecentlyViewedCharacterCubit] with a reference to the global list cubit.
+  /// Creates a [RecentlyViewedCharacterCubit] with a reference to the global
+  /// list cubit.
   RecentlyViewedCharacterCubit({
     required AllRecentCharactersCubit allRecentCharactersCubit,
   })  : _allRecentCharactersCubit = allRecentCharactersCubit,
         super(const RecentlyViewedCharacterState.initial());
 
-  /// Reference to the cubit managing the global list of recently viewed characters.
+  /// Reference to the cubit managing the global list of recently viewed
+  /// characters.
   final AllRecentCharactersCubit _allRecentCharactersCubit;
 
   /// Saves a character as recently viewed and updates the global list.
@@ -36,7 +39,7 @@ class RecentlyViewedCharacterCubit extends Cubit<RecentlyViewedCharacterState> {
       await AppStorage.saveRecentlyViewedCharacter(character);
       emit(_Saved(character: character));
       await _allRecentCharactersCubit.getAllRecentlyViewedCharacters();
-    } catch (e) {
+    } on Exception catch (e) {
       emit(_Error(error: e.toString()));
       await _allRecentCharactersCubit.getAllRecentlyViewedCharacters();
     }

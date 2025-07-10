@@ -6,7 +6,7 @@ library;
 import 'package:get_it/get_it.dart';
 
 /// Global [GetIt.instance] for dependency injection.
-final locator = GetIt.instance;
+final GetIt locator = GetIt.instance;
 
 /// Set up [GetIt] locator for registering services and singletons.
 Future<void> setUpLocator() async {}

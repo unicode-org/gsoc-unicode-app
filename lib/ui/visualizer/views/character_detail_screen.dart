@@ -17,7 +17,7 @@ import 'package:gsoc_unicode_app/utils/utils.dart';
 /// The screen that shows details for a single Unicode character.
 class CharacterDetailScreen extends StatelessWidget {
   /// Creates a [CharacterDetailScreen] for the given [character].
-  const CharacterDetailScreen({super.key, required this.character});
+  const CharacterDetailScreen({required this.character, super.key});
 
   /// The Unicode character to display details for.
   final UnicodeCharacter character;

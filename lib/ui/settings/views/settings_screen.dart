@@ -1,6 +1,7 @@
 /// Settings screen for the Unicode Flutter App.
 ///
-/// Allows users to view and adjust general app settings such as font and language.
+/// Allows users to view and adjust general app settings such as font and
+/// language.
 library;
 
 import 'package:auto_route/auto_route.dart';

@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
 
+/// A widget that displays a settings tile with a border and padding.
 class SettingsTile extends StatelessWidget {
+  /// Creates a [SettingsTile] widget.
   const SettingsTile({
-    super.key,
     required this.settingsDetail,
     required this.settingsInfo,
     this.lastItem = false,
+    super.key,
   });
 
-  // This shows the main info in the settings screen
+  /// This shows the main info in the settings screen
   final String settingsInfo;
 
-  // This shows the main detail of whatever you set
+  /// This shows the main detail of whatever you set
   final String settingsDetail;
 
-  // This controls the bottom border
+  /// This controls the bottom border
   final bool lastItem;
 
   @override

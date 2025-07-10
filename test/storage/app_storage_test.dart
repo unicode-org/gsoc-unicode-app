@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     mockBox = MockBox();
-    AppStorage.setTestBox(mockBox);
+    AppStorage.testBox = mockBox;
     character = const UnicodeCharacter(
       character: 'A',
       characterName: 'LATIN CAPITAL LETTER A',

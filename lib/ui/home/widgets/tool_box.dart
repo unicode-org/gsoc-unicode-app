@@ -4,27 +4,30 @@ import 'package:gsoc_unicode_app/app/app_theme.dart';
 import 'package:gsoc_unicode_app/shared/shared.dart';
 import 'package:gsoc_unicode_app/utils/utils.dart';
 
+/// A widget that displays a tool option with icon, title, and description.
 class ToolBox extends StatelessWidget {
+  /// Creates a [ToolBox] widget.
   const ToolBox({
-    super.key,
     required this.tool,
     required this.description,
     required this.icon,
     required this.onTap,
+    super.key,
   });
 
-  /// Tool text
+  /// Tool text.
   final String tool;
 
-  // Tool decsription
+  /// Tool description.
   final String description;
 
-  // Tool icon
+  /// Tool icon.
   final IconData icon;
 
-  // Navigator for tool
+  /// Callback for navigation or action when the tool is tapped.
   final VoidCallback onTap;
 
+  /// Builds the widget tree for the tool box.
   @override
   Widget build(BuildContext context) {
     return ShrinkableButton(

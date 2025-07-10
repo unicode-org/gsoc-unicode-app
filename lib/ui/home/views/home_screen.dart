@@ -1,6 +1,7 @@
 /// Home screen for the Unicode Flutter App.
 ///
-/// Allows users to choose between the Unicode Character Visualizer and Multilingual Tester tools.
+/// Allows users to choose between the Unicode Character Visualizer and
+/// Multilingual Tester tools.
 library;
 
 import 'package:auto_route/auto_route.dart';

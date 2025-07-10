@@ -1,6 +1,7 @@
 /// A customizable app bar widget for the Unicode Flutter App.
 ///
-/// Provides options for title, actions, leading widget, image, and color customization.
+/// Provides options for title, actions, leading widget, image, and color
+/// customization.
 library;
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
 import 'package:gsoc_unicode_app/utils/context_extension.dart';
 
-/// A custom app bar with flexible configuration for title, actions, and visuals.
+/// A custom app bar with flexible configuration for title, actions, and
+/// visuals.
 ///
 /// Parameters:
 /// - [height]: The height of the app bar.
@@ -24,8 +26,8 @@ import 'package:gsoc_unicode_app/utils/context_extension.dart';
 /// - [bottomPadding]: Bottom padding for the app bar.
 /// - [imageUrl]: URL of the image to display (if any).
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  /// Creates a [CustomAppBar] widget.
   const CustomAppBar({
-    super.key,
     this.height,
     this.title,
     this.actions,
@@ -38,6 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.isImagePresent = false,
     this.imageName,
     this.bottomPadding,
+    super.key,
   });
 
   /// The height of the app bar.

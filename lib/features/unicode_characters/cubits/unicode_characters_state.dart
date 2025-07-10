@@ -9,18 +9,25 @@ part of 'unicode_characters_cubit.dart';
 /// It is also used to store the loaded state.
 @freezed
 class UnicodeCharactersState with _$UnicodeCharactersState {
+  /// Initial state for Unicode characters.
   const factory UnicodeCharactersState.initial({
     @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
     @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> filteredCharacters,
   }) = _Initial;
+
+  /// Loading state for Unicode characters.
   const factory UnicodeCharactersState.loading({
     @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
     @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> filteredCharacters,
   }) = _Loading;
+
+  /// Loaded state for Unicode characters.
   const factory UnicodeCharactersState.loaded({
     required List<UnicodeCharacter> characters,
     required List<UnicodeCharacter> filteredCharacters,
   }) = _Loaded;
+
+  /// Error state for Unicode characters.
   const factory UnicodeCharactersState.error({
     String? error,
     @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,

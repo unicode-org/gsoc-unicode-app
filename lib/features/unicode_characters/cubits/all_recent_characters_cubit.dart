@@ -26,7 +26,7 @@ class AllRecentCharactersCubit extends Cubit<AllRecentCharactersState> {
       emit(_Loading(characters: state.characters));
       final recentCharacters = AppStorage.getRecentlyViewedCharacters();
       emit(_Loaded(characters: recentCharacters));
-    } catch (e) {
+    } on Exception catch (e) {
       emit(_Error(error: e.toString(), characters: state.characters));
     }
   }

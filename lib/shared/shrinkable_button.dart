@@ -1,4 +1,5 @@
-/// A button widget that shrinks when pressed, providing a tactile feedback effect.
+/// A button widget that shrinks when pressed, providing a tactile feedback
+/// effect.
 ///
 /// Used for interactive elements that benefit from a press animation.
 library;
@@ -11,7 +12,8 @@ import 'package:flutter/material.dart';
 /// - [child]: The widget to display inside the button.
 /// - [onTap]: Callback when the button is tapped.
 class ShrinkableButton extends StatefulWidget {
-  const ShrinkableButton({super.key, required this.child, this.onTap});
+  /// Creates a [ShrinkableButton] widget.
+  const ShrinkableButton({required this.child, super.key, this.onTap});
 
   /// The widget to display inside the button.
   final Widget child;
@@ -19,6 +21,7 @@ class ShrinkableButton extends StatefulWidget {
   /// Callback when the button is tapped.
   final VoidCallback? onTap;
 
+  /// Creates the mutable state for this widget.
   @override
   State<ShrinkableButton> createState() => _ShrinkableButtonState();
 }

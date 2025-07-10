@@ -5,8 +5,10 @@ import 'package:gsoc_unicode_app/models/models.dart';
 import 'package:gsoc_unicode_app/shared/shared.dart';
 import 'package:gsoc_unicode_app/ui/ui.dart';
 
+/// A widget that displays a list of characters.
 class CharacterView extends HookWidget {
-  const CharacterView({super.key, required this.characters});
+  /// Creates a [CharacterView] widget.
+  const CharacterView({required this.characters, super.key});
 
   /// Charcters
   final List<UnicodeCharacter> characters;
