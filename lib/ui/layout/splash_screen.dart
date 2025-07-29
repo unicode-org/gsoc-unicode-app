@@ -19,6 +19,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+/// State class for managing the splash screen animations and navigation.
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController _controller;
@@ -93,6 +94,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
+  /// Builds the widget tree for the splash screen.
   @override
   Widget build(BuildContext context) {
     final locale = context.appLocalizations;

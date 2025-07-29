@@ -7,7 +7,7 @@ library;
 const boxName = 'unicodeBox';
 
 /// The key for saving the list of Unicode characters.
-const savedCharactersKey = 'saveUnicodeCharacters';
+const savedCharactersKey = 'saveUnicodeCharPropertiess';
 
 /// The key for saving the list of recently viewed characters.
 const recentCharacterKey = 'recentlyViewedCharacter';

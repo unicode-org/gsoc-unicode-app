@@ -14,7 +14,7 @@ class RecentlyViewedCharacterState with _$RecentlyViewedCharacterState {
 
   /// Saved state for recently viewed character.
   const factory RecentlyViewedCharacterState.saved({
-    required UnicodeCharacter character,
+    required UnicodeCharProperties character,
   }) = _Saved;
 
   /// Error state for recently viewed character.

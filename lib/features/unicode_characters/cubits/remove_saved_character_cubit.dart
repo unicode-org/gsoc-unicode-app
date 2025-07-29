@@ -3,10 +3,10 @@
 /// Handles the removal process and updates the saved characters list.
 library;
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gsoc_unicode_app/features/features.dart';
-import 'package:gsoc_unicode_app/models/models.dart';
 import 'package:gsoc_unicode_app/storage/storage.dart';
 
 part 'remove_saved_character_state.dart';
@@ -31,7 +31,8 @@ class RemoveSavedCharacterCubit extends Cubit<RemoveSavedCharacterState> {
   /// Removes a Unicode character from the saved list and updates the state.
   ///
   /// Emits [_Removing], then [_Removed] or [_Error].
-  Future<void> removeCharacter({required UnicodeCharacter character}) async {
+  Future<void> removeCharacter(
+      {required UnicodeCharProperties character}) async {
     try {
       emit(const _Removing());
       await AppStorage.removeCharacter(character);

@@ -12,15 +12,16 @@ class SettingsTile extends StatelessWidget {
     super.key,
   });
 
-  /// This shows the main info in the settings screen
-  final String settingsInfo;
-
-  /// This shows the main detail of whatever you set
+  /// The main detail text to display.
   final String settingsDetail;
 
-  /// This controls the bottom border
+  /// The main info text to display.
+  final String settingsInfo;
+
+  /// Whether this is the last item (removes bottom border if true).
   final bool lastItem;
 
+  /// Builds the widget tree for the settings tile.
   @override
   Widget build(BuildContext context) {
     return Container(

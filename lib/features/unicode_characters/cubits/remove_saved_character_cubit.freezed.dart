@@ -20,7 +20,7 @@ mixin _$RemoveSavedCharacterState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() removing,
-    required TResult Function(UnicodeCharacter character) removed,
+    required TResult Function(UnicodeCharProperties character) removed,
     required TResult Function(String? error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$RemoveSavedCharacterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? removing,
-    TResult? Function(UnicodeCharacter character)? removed,
+    TResult? Function(UnicodeCharProperties character)? removed,
     TResult? Function(String? error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$RemoveSavedCharacterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? removing,
-    TResult Function(UnicodeCharacter character)? removed,
+    TResult Function(UnicodeCharProperties character)? removed,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) =>
@@ -133,7 +133,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() removing,
-    required TResult Function(UnicodeCharacter character) removed,
+    required TResult Function(UnicodeCharProperties character) removed,
     required TResult Function(String? error) error,
   }) {
     return initial();
@@ -144,7 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? removing,
-    TResult? Function(UnicodeCharacter character)? removed,
+    TResult? Function(UnicodeCharProperties character)? removed,
     TResult? Function(String? error)? error,
   }) {
     return initial?.call();
@@ -155,7 +155,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? removing,
-    TResult Function(UnicodeCharacter character)? removed,
+    TResult Function(UnicodeCharProperties character)? removed,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -250,7 +250,7 @@ class _$RemovingImpl implements _Removing {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() removing,
-    required TResult Function(UnicodeCharacter character) removed,
+    required TResult Function(UnicodeCharProperties character) removed,
     required TResult Function(String? error) error,
   }) {
     return removing();
@@ -261,7 +261,7 @@ class _$RemovingImpl implements _Removing {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? removing,
-    TResult? Function(UnicodeCharacter character)? removed,
+    TResult? Function(UnicodeCharProperties character)? removed,
     TResult? Function(String? error)? error,
   }) {
     return removing?.call();
@@ -272,7 +272,7 @@ class _$RemovingImpl implements _Removing {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? removing,
-    TResult Function(UnicodeCharacter character)? removed,
+    TResult Function(UnicodeCharProperties character)? removed,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -330,9 +330,7 @@ abstract class _$$RemovedImplCopyWith<$Res> {
           _$RemovedImpl value, $Res Function(_$RemovedImpl) then) =
       __$$RemovedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UnicodeCharacter character});
-
-  $UnicodeCharacterCopyWith<$Res> get character;
+  $Res call({UnicodeCharProperties character});
 }
 
 /// @nodoc
@@ -354,18 +352,8 @@ class __$$RemovedImplCopyWithImpl<$Res>
       character: null == character
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
-              as UnicodeCharacter,
+              as UnicodeCharProperties,
     ));
-  }
-
-  /// Create a copy of RemoveSavedCharacterState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UnicodeCharacterCopyWith<$Res> get character {
-    return $UnicodeCharacterCopyWith<$Res>(_value.character, (value) {
-      return _then(_value.copyWith(character: value));
-    });
   }
 }
 
@@ -375,7 +363,7 @@ class _$RemovedImpl implements _Removed {
   const _$RemovedImpl({required this.character});
 
   @override
-  final UnicodeCharacter character;
+  final UnicodeCharProperties character;
 
   @override
   String toString() {
@@ -407,7 +395,7 @@ class _$RemovedImpl implements _Removed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() removing,
-    required TResult Function(UnicodeCharacter character) removed,
+    required TResult Function(UnicodeCharProperties character) removed,
     required TResult Function(String? error) error,
   }) {
     return removed(character);
@@ -418,7 +406,7 @@ class _$RemovedImpl implements _Removed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? removing,
-    TResult? Function(UnicodeCharacter character)? removed,
+    TResult? Function(UnicodeCharProperties character)? removed,
     TResult? Function(String? error)? error,
   }) {
     return removed?.call(character);
@@ -429,7 +417,7 @@ class _$RemovedImpl implements _Removed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? removing,
-    TResult Function(UnicodeCharacter character)? removed,
+    TResult Function(UnicodeCharProperties character)? removed,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -478,10 +466,10 @@ class _$RemovedImpl implements _Removed {
 }
 
 abstract class _Removed implements RemoveSavedCharacterState {
-  const factory _Removed({required final UnicodeCharacter character}) =
+  const factory _Removed({required final UnicodeCharProperties character}) =
       _$RemovedImpl;
 
-  UnicodeCharacter get character;
+  UnicodeCharProperties get character;
 
   /// Create a copy of RemoveSavedCharacterState
   /// with the given fields replaced by the non-null parameter values.
@@ -560,7 +548,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() removing,
-    required TResult Function(UnicodeCharacter character) removed,
+    required TResult Function(UnicodeCharProperties character) removed,
     required TResult Function(String? error) error,
   }) {
     return error(this.error);
@@ -571,7 +559,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? removing,
-    TResult? Function(UnicodeCharacter character)? removed,
+    TResult? Function(UnicodeCharProperties character)? removed,
     TResult? Function(String? error)? error,
   }) {
     return error?.call(this.error);
@@ -582,7 +570,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? removing,
-    TResult Function(UnicodeCharacter character)? removed,
+    TResult Function(UnicodeCharProperties character)? removed,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {

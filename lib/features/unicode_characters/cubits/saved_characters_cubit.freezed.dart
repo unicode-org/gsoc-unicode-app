@@ -16,30 +16,34 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SavedCharactersState {
-  List<UnicodeCharacter> get characters => throw _privateConstructorUsedError;
+  List<UnicodeCharProperties> get characters =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharacter> characters) initial,
-    required TResult Function(List<UnicodeCharacter> characters) loading,
-    required TResult Function(List<UnicodeCharacter> characters) loaded,
-    required TResult Function(String? error, List<UnicodeCharacter> characters)
+    required TResult Function(List<UnicodeCharProperties> characters) initial,
+    required TResult Function(List<UnicodeCharProperties> characters) loading,
+    required TResult Function(List<UnicodeCharProperties> characters) loaded,
+    required TResult Function(
+            String? error, List<UnicodeCharProperties> characters)
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharacter> characters)? initial,
-    TResult? Function(List<UnicodeCharacter> characters)? loading,
-    TResult? Function(List<UnicodeCharacter> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult? Function(List<UnicodeCharProperties> characters)? initial,
+    TResult? Function(List<UnicodeCharProperties> characters)? loading,
+    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharacter> characters)? initial,
-    TResult Function(List<UnicodeCharacter> characters)? loading,
-    TResult Function(List<UnicodeCharacter> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult Function(List<UnicodeCharProperties> characters)? initial,
+    TResult Function(List<UnicodeCharProperties> characters)? loading,
+    TResult Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,7 +86,7 @@ abstract class $SavedCharactersStateCopyWith<$Res> {
           $Res Function(SavedCharactersState) then) =
       _$SavedCharactersStateCopyWithImpl<$Res, SavedCharactersState>;
   @useResult
-  $Res call({List<UnicodeCharacter> characters});
+  $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
@@ -107,7 +111,7 @@ class _$SavedCharactersStateCopyWithImpl<$Res,
       characters: null == characters
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharacter>,
+              as List<UnicodeCharProperties>,
     ) as $Val);
   }
 }
@@ -120,7 +124,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UnicodeCharacter> characters});
+  $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
@@ -142,7 +146,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       characters: null == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharacter>,
+              as List<UnicodeCharProperties>,
     ));
   }
 }
@@ -151,13 +155,14 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 class _$InitialImpl implements _Initial {
   const _$InitialImpl(
-      {final List<UnicodeCharacter> characters = const <UnicodeCharacter>[]})
+      {final List<UnicodeCharProperties> characters =
+          const <UnicodeCharProperties>[]})
       : _characters = characters;
 
-  final List<UnicodeCharacter> _characters;
+  final List<UnicodeCharProperties> _characters;
   @override
   @JsonKey()
-  List<UnicodeCharacter> get characters {
+  List<UnicodeCharProperties> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
@@ -192,10 +197,11 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharacter> characters) initial,
-    required TResult Function(List<UnicodeCharacter> characters) loading,
-    required TResult Function(List<UnicodeCharacter> characters) loaded,
-    required TResult Function(String? error, List<UnicodeCharacter> characters)
+    required TResult Function(List<UnicodeCharProperties> characters) initial,
+    required TResult Function(List<UnicodeCharProperties> characters) loading,
+    required TResult Function(List<UnicodeCharProperties> characters) loaded,
+    required TResult Function(
+            String? error, List<UnicodeCharProperties> characters)
         error,
   }) {
     return initial(characters);
@@ -204,10 +210,11 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharacter> characters)? initial,
-    TResult? Function(List<UnicodeCharacter> characters)? loading,
-    TResult? Function(List<UnicodeCharacter> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult? Function(List<UnicodeCharProperties> characters)? initial,
+    TResult? Function(List<UnicodeCharProperties> characters)? loading,
+    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
   }) {
     return initial?.call(characters);
   }
@@ -215,10 +222,11 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharacter> characters)? initial,
-    TResult Function(List<UnicodeCharacter> characters)? loading,
-    TResult Function(List<UnicodeCharacter> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult Function(List<UnicodeCharProperties> characters)? initial,
+    TResult Function(List<UnicodeCharProperties> characters)? loading,
+    TResult Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -266,11 +274,11 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements SavedCharactersState {
-  const factory _Initial({final List<UnicodeCharacter> characters}) =
+  const factory _Initial({final List<UnicodeCharProperties> characters}) =
       _$InitialImpl;
 
   @override
-  List<UnicodeCharacter> get characters;
+  List<UnicodeCharProperties> get characters;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
@@ -288,7 +296,7 @@ abstract class _$$LoadingImplCopyWith<$Res>
       __$$LoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UnicodeCharacter> characters});
+  $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
@@ -310,7 +318,7 @@ class __$$LoadingImplCopyWithImpl<$Res>
       characters: null == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharacter>,
+              as List<UnicodeCharProperties>,
     ));
   }
 }
@@ -319,13 +327,14 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 class _$LoadingImpl implements _Loading {
   const _$LoadingImpl(
-      {final List<UnicodeCharacter> characters = const <UnicodeCharacter>[]})
+      {final List<UnicodeCharProperties> characters =
+          const <UnicodeCharProperties>[]})
       : _characters = characters;
 
-  final List<UnicodeCharacter> _characters;
+  final List<UnicodeCharProperties> _characters;
   @override
   @JsonKey()
-  List<UnicodeCharacter> get characters {
+  List<UnicodeCharProperties> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
@@ -360,10 +369,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharacter> characters) initial,
-    required TResult Function(List<UnicodeCharacter> characters) loading,
-    required TResult Function(List<UnicodeCharacter> characters) loaded,
-    required TResult Function(String? error, List<UnicodeCharacter> characters)
+    required TResult Function(List<UnicodeCharProperties> characters) initial,
+    required TResult Function(List<UnicodeCharProperties> characters) loading,
+    required TResult Function(List<UnicodeCharProperties> characters) loaded,
+    required TResult Function(
+            String? error, List<UnicodeCharProperties> characters)
         error,
   }) {
     return loading(characters);
@@ -372,10 +382,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharacter> characters)? initial,
-    TResult? Function(List<UnicodeCharacter> characters)? loading,
-    TResult? Function(List<UnicodeCharacter> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult? Function(List<UnicodeCharProperties> characters)? initial,
+    TResult? Function(List<UnicodeCharProperties> characters)? loading,
+    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
   }) {
     return loading?.call(characters);
   }
@@ -383,10 +394,11 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharacter> characters)? initial,
-    TResult Function(List<UnicodeCharacter> characters)? loading,
-    TResult Function(List<UnicodeCharacter> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult Function(List<UnicodeCharProperties> characters)? initial,
+    TResult Function(List<UnicodeCharProperties> characters)? loading,
+    TResult Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -434,11 +446,11 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements SavedCharactersState {
-  const factory _Loading({final List<UnicodeCharacter> characters}) =
+  const factory _Loading({final List<UnicodeCharProperties> characters}) =
       _$LoadingImpl;
 
   @override
-  List<UnicodeCharacter> get characters;
+  List<UnicodeCharProperties> get characters;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
@@ -456,7 +468,7 @@ abstract class _$$LoadedImplCopyWith<$Res>
       __$$LoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UnicodeCharacter> characters});
+  $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
@@ -478,7 +490,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       characters: null == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharacter>,
+              as List<UnicodeCharProperties>,
     ));
   }
 }
@@ -486,12 +498,12 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<UnicodeCharacter> characters})
+  const _$LoadedImpl({required final List<UnicodeCharProperties> characters})
       : _characters = characters;
 
-  final List<UnicodeCharacter> _characters;
+  final List<UnicodeCharProperties> _characters;
   @override
-  List<UnicodeCharacter> get characters {
+  List<UnicodeCharProperties> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
@@ -526,10 +538,11 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharacter> characters) initial,
-    required TResult Function(List<UnicodeCharacter> characters) loading,
-    required TResult Function(List<UnicodeCharacter> characters) loaded,
-    required TResult Function(String? error, List<UnicodeCharacter> characters)
+    required TResult Function(List<UnicodeCharProperties> characters) initial,
+    required TResult Function(List<UnicodeCharProperties> characters) loading,
+    required TResult Function(List<UnicodeCharProperties> characters) loaded,
+    required TResult Function(
+            String? error, List<UnicodeCharProperties> characters)
         error,
   }) {
     return loaded(characters);
@@ -538,10 +551,11 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharacter> characters)? initial,
-    TResult? Function(List<UnicodeCharacter> characters)? loading,
-    TResult? Function(List<UnicodeCharacter> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult? Function(List<UnicodeCharProperties> characters)? initial,
+    TResult? Function(List<UnicodeCharProperties> characters)? loading,
+    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
   }) {
     return loaded?.call(characters);
   }
@@ -549,10 +563,11 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharacter> characters)? initial,
-    TResult Function(List<UnicodeCharacter> characters)? loading,
-    TResult Function(List<UnicodeCharacter> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult Function(List<UnicodeCharProperties> characters)? initial,
+    TResult Function(List<UnicodeCharProperties> characters)? loading,
+    TResult Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -600,11 +615,11 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements SavedCharactersState {
-  const factory _Loaded({required final List<UnicodeCharacter> characters}) =
-      _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<UnicodeCharProperties> characters}) = _$LoadedImpl;
 
   @override
-  List<UnicodeCharacter> get characters;
+  List<UnicodeCharProperties> get characters;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
@@ -622,7 +637,7 @@ abstract class _$$ErrorImplCopyWith<$Res>
       __$$ErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? error, List<UnicodeCharacter> characters});
+  $Res call({String? error, List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
@@ -649,7 +664,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
       characters: null == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharacter>,
+              as List<UnicodeCharProperties>,
     ));
   }
 }
@@ -659,15 +674,16 @@ class __$$ErrorImplCopyWithImpl<$Res>
 class _$ErrorImpl implements _Error {
   const _$ErrorImpl(
       {this.error,
-      final List<UnicodeCharacter> characters = const <UnicodeCharacter>[]})
+      final List<UnicodeCharProperties> characters =
+          const <UnicodeCharProperties>[]})
       : _characters = characters;
 
   @override
   final String? error;
-  final List<UnicodeCharacter> _characters;
+  final List<UnicodeCharProperties> _characters;
   @override
   @JsonKey()
-  List<UnicodeCharacter> get characters {
+  List<UnicodeCharProperties> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
@@ -703,10 +719,11 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharacter> characters) initial,
-    required TResult Function(List<UnicodeCharacter> characters) loading,
-    required TResult Function(List<UnicodeCharacter> characters) loaded,
-    required TResult Function(String? error, List<UnicodeCharacter> characters)
+    required TResult Function(List<UnicodeCharProperties> characters) initial,
+    required TResult Function(List<UnicodeCharProperties> characters) loading,
+    required TResult Function(List<UnicodeCharProperties> characters) loaded,
+    required TResult Function(
+            String? error, List<UnicodeCharProperties> characters)
         error,
   }) {
     return error(this.error, characters);
@@ -715,10 +732,11 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharacter> characters)? initial,
-    TResult? Function(List<UnicodeCharacter> characters)? loading,
-    TResult? Function(List<UnicodeCharacter> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult? Function(List<UnicodeCharProperties> characters)? initial,
+    TResult? Function(List<UnicodeCharProperties> characters)? loading,
+    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
   }) {
     return error?.call(this.error, characters);
   }
@@ -726,10 +744,11 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharacter> characters)? initial,
-    TResult Function(List<UnicodeCharacter> characters)? loading,
-    TResult Function(List<UnicodeCharacter> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharacter> characters)? error,
+    TResult Function(List<UnicodeCharProperties> characters)? initial,
+    TResult Function(List<UnicodeCharProperties> characters)? loading,
+    TResult Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -779,11 +798,11 @@ class _$ErrorImpl implements _Error {
 abstract class _Error implements SavedCharactersState {
   const factory _Error(
       {final String? error,
-      final List<UnicodeCharacter> characters}) = _$ErrorImpl;
+      final List<UnicodeCharProperties> characters}) = _$ErrorImpl;
 
   String? get error;
   @override
-  List<UnicodeCharacter> get characters;
+  List<UnicodeCharProperties> get characters;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.

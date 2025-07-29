@@ -1,7 +1,7 @@
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gsoc_unicode_app/features/features.dart';
-import 'package:gsoc_unicode_app/models/models.dart';
 import 'package:gsoc_unicode_app/storage/storage.dart';
 
 part 'save_character_cubit.freezed.dart';
@@ -19,14 +19,14 @@ class SaveCharacterCubit extends Cubit<SaveCharacterState> {
   })  : _savedCharactersCubit = savedCharactersCubit,
         super(const SaveCharacterState.initial());
 
-  // SavedCharactersCubit
+  /// Reference to the cubit managing the saved characters list.
   final SavedCharactersCubit _savedCharactersCubit;
 
   /// Saves a Unicode character to the saved list and updates the state.
   ///
   /// Emits [_Saving], then [_Saved] or [_Error].
   Future<void> saveCharacter({
-    required UnicodeCharacter character,
+    required UnicodeCharProperties character,
   }) async {
     try {
       emit(const _Saving());

@@ -35,7 +35,7 @@ gsoc-unicode-app/
 │   ├── features/      # Feature modules (Unicode explorer, etc.)
 │   ├── gen/           # Generated code (e.g., asset references)
 │   ├── i10n/          # Localization files
-│   ├── models/        # Data models (e.g., UnicodeCharacter)
+│   ├── models/        # Data models (e.g., UnicodeCharProperties)
 │   ├── shared/        # Shared widgets/components
 │   ├── storage/       # Persistent storage logic
 │   ├── ui/            # UI screens and widgets

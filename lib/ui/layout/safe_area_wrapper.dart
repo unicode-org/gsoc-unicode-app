@@ -12,9 +12,10 @@ class SafeAreaWrapper extends StatelessWidget {
     super.key,
   });
 
-  /// Child
+  /// The child widget to wrap in a safe area.
   final Widget child;
 
+  /// Builds the widget tree for the safe area wrapper.
   @override
   Widget build(BuildContext context) {
     return SafeArea(

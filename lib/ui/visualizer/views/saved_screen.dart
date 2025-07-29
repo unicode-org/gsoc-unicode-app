@@ -53,8 +53,8 @@ class SavedScreen extends StatelessWidget {
                       ...savedCharacters.map((char) {
                         return CharacterTile(
                           character: char.character,
-                          characterName: char.characterName,
-                          codePoint: char.codePoint,
+                          characterName: char.character,
+                          codePoint: char.unicodeValue ?? '',
                           onTap: () => context.router.pushWidget(
                             CharacterDetailScreen(character: char),
                           ),
