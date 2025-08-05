@@ -14,7 +14,7 @@ dependencies:
   csv: ^6.0.0
   cupertino_icons: ^1.0.6
   dart_icu4x:
-    path: ../icu4x/dart_icu4x
+    path: packages/dart_icu4x
   dartdoc: ^8.3.4
   device_info_plus: ^11.4.0
   flutter:
@@ -34,10 +34,6 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^1.2.1
-  # icu:
-  #   git:
-  #     url: git@github.com:unicode-org/icu4x.git
-  #     path: ffi/dart
   json_annotation: ^4.8.1
   lottie: ^3.1.2
   multi_dropdown: ^3.0.1
