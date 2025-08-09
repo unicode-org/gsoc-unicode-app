@@ -1,7 +1,7 @@
 name: dart_icu4x
 description: "A new Flutter FFI plugin project."
 version: 0.0.1
-homepage:
+homepage: "https://github.com/unicode-org/gsoc-unicode-app"
 
 environment:
   sdk: ^3.8.1

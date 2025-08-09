@@ -32,9 +32,6 @@ dart_icu4x/
 ├── example/                      # Example Flutter application
 ├── android/                      # Android platform configuration
 ├── ios/                         # iOS platform configuration
-├── linux/                       # Linux platform configuration
-├── macos/                       # macOS platform configuration
-├── windows/                     # Windows platform configuration
 ├── cargokit/                    # Build tools for native code
 ├── test_driver/                 # Integration test configuration
 ├── flutter_rust_bridge.yaml     # Flutter Rust Bridge configuration
@@ -57,9 +54,6 @@ dart_icu4x/
 ### Platform Support
 - **Android**: Native ARM64 and x86_64 support
 - **iOS**: Native ARM64 and x86_64 support  
-- **Linux**: Native x86_64 support
-- **macOS**: Native ARM64 and x86_64 support
-- **Windows**: Native x86_64 support
 
 ## Features
 
