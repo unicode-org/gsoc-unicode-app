@@ -23,7 +23,7 @@ fresh: ## Runs `clean` and `setup` for a fresh setup.
 	make setup
 
 cargo-build: ## Runs `cargo build --manifest-path rust/Cargo.toml`.
-	cargo build --manifest-path rust/Cargo.toml 
+	cargo build --manifest-path rust/Cargo.toml
 
 generate: ## Runs `flutter_rust_bridge_codegen generate`.
 	flutter_rust_bridge_codegen generate
@@ -36,4 +36,3 @@ format: ## Formats dart files.
 
 test: ## Runs unit tests.
 	flutter test
-	

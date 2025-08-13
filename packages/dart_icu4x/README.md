@@ -14,9 +14,9 @@ ICU4X is a modern, modular internationalization library that provides Unicode an
 
 ```
 dart_icu4x/
-├── rust/                          # Rust backend with ICU4X integration
+├── rust/                         # Rust backend with ICU4X integration
 │   ├── src/
-│   │   ├── api/                   # API definitions
+│   │   ├── api/                  # API definitions
 │   │   │   ├── mod.rs            # Module declarations
 │   │   │   └── simple.rs         # Core Unicode functionality
 │   │   ├── lib.rs                # Library entry point
@@ -28,15 +28,15 @@ dart_icu4x/
 │   │   │   ├── simple.dart       # Unicode character properties
 │   │   │   └── model_helper.dart # Helper classes
 │   │   └── frb_generated.dart    # Core bridge functionality
-│   └── dart_icu4x.dart          # Main library exports
+│   └── dart_icu4x.dart           # Main library exports
 ├── example/                      # Example Flutter application
 ├── android/                      # Android platform configuration
-├── ios/                         # iOS platform configuration
-├── cargokit/                    # Build tools for native code
-├── test_driver/                 # Integration test configuration
-├── flutter_rust_bridge.yaml     # Flutter Rust Bridge configuration
-├── pubspec.yaml                 # Flutter package configuration
-└── Makefile                     # Build automation
+├── ios/                          # iOS platform configuration
+├── cargokit/                     # Build tools for native code
+├── test_driver/                  # Integration test configuration
+├── flutter_rust_bridge.yaml      # Flutter Rust Bridge configuration
+├── pubspec.yaml                  # Flutter package configuration
+└── Makefile                      # Build automation
 ```
 
 ## Key Components

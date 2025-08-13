@@ -11,7 +11,6 @@ use icu_properties::CodePointSetData;
 use unicode_names2::name;
 use unicode_blocks::find_unicode_block;
 use icu_properties::props::*;
-use once_cell::sync::Lazy;
 
 #[derive(Serialize)]
 pub struct UnicodeCharProperties {
@@ -205,7 +204,7 @@ pub struct CaseMappingResult {
 #[flutter_rust_bridge::frb(sync)]
 pub fn get_character_case_mapping(character: String) -> CaseMappingResult {
     let casemapper = CaseMapper::new();
-    let langid: LanguageIdentifier = "und".parse().unwrap();
+    let langid: LanguageIdentifier = "und".parse().expect("Failed to parse 'und' as a language identifier");
     
     let mut chars = character.chars();
     let c = match chars.next() {

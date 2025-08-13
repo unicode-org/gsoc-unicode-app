@@ -11,7 +11,7 @@ Bindings for ICU4X Properties generated with flutter_rust_bridge
                        DESC
   s.homepage         = 'https://github.com/unicode-org/gsoc-unicode-app'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'https://icu4x.unicode.org/' }
+  s.author           = { 'YThe Unicode Consortium' => 'https://icu4x.unicode.org/' }
 
   # This will ensure the source files in Classes/ are included in the native
   # builds of apps using this FFI plugin. Podspec does not support relative
