@@ -20,7 +20,7 @@ mixin _$SaveCharacterState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() saving,
-    required TResult Function(UnicodeCharacter character) saved,
+    required TResult Function(UnicodeCharProperties character) saved,
     required TResult Function(String? error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$SaveCharacterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? saving,
-    TResult? Function(UnicodeCharacter character)? saved,
+    TResult? Function(UnicodeCharProperties character)? saved,
     TResult? Function(String? error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$SaveCharacterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? saving,
-    TResult Function(UnicodeCharacter character)? saved,
+    TResult Function(UnicodeCharProperties character)? saved,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() saving,
-    required TResult Function(UnicodeCharacter character) saved,
+    required TResult Function(UnicodeCharProperties character) saved,
     required TResult Function(String? error) error,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? saving,
-    TResult? Function(UnicodeCharacter character)? saved,
+    TResult? Function(UnicodeCharProperties character)? saved,
     TResult? Function(String? error)? error,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? saving,
-    TResult Function(UnicodeCharacter character)? saved,
+    TResult Function(UnicodeCharProperties character)? saved,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$SavingImpl implements _Saving {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() saving,
-    required TResult Function(UnicodeCharacter character) saved,
+    required TResult Function(UnicodeCharProperties character) saved,
     required TResult Function(String? error) error,
   }) {
     return saving();
@@ -260,7 +260,7 @@ class _$SavingImpl implements _Saving {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? saving,
-    TResult? Function(UnicodeCharacter character)? saved,
+    TResult? Function(UnicodeCharProperties character)? saved,
     TResult? Function(String? error)? error,
   }) {
     return saving?.call();
@@ -271,7 +271,7 @@ class _$SavingImpl implements _Saving {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? saving,
-    TResult Function(UnicodeCharacter character)? saved,
+    TResult Function(UnicodeCharProperties character)? saved,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -329,9 +329,7 @@ abstract class _$$SavedImplCopyWith<$Res> {
           _$SavedImpl value, $Res Function(_$SavedImpl) then) =
       __$$SavedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UnicodeCharacter character});
-
-  $UnicodeCharacterCopyWith<$Res> get character;
+  $Res call({UnicodeCharProperties character});
 }
 
 /// @nodoc
@@ -353,18 +351,8 @@ class __$$SavedImplCopyWithImpl<$Res>
       character: null == character
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
-              as UnicodeCharacter,
+              as UnicodeCharProperties,
     ));
-  }
-
-  /// Create a copy of SaveCharacterState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UnicodeCharacterCopyWith<$Res> get character {
-    return $UnicodeCharacterCopyWith<$Res>(_value.character, (value) {
-      return _then(_value.copyWith(character: value));
-    });
   }
 }
 
@@ -374,7 +362,7 @@ class _$SavedImpl implements _Saved {
   const _$SavedImpl({required this.character});
 
   @override
-  final UnicodeCharacter character;
+  final UnicodeCharProperties character;
 
   @override
   String toString() {
@@ -406,7 +394,7 @@ class _$SavedImpl implements _Saved {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() saving,
-    required TResult Function(UnicodeCharacter character) saved,
+    required TResult Function(UnicodeCharProperties character) saved,
     required TResult Function(String? error) error,
   }) {
     return saved(character);
@@ -417,7 +405,7 @@ class _$SavedImpl implements _Saved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? saving,
-    TResult? Function(UnicodeCharacter character)? saved,
+    TResult? Function(UnicodeCharProperties character)? saved,
     TResult? Function(String? error)? error,
   }) {
     return saved?.call(character);
@@ -428,7 +416,7 @@ class _$SavedImpl implements _Saved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? saving,
-    TResult Function(UnicodeCharacter character)? saved,
+    TResult Function(UnicodeCharProperties character)? saved,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -477,10 +465,10 @@ class _$SavedImpl implements _Saved {
 }
 
 abstract class _Saved implements SaveCharacterState {
-  const factory _Saved({required final UnicodeCharacter character}) =
+  const factory _Saved({required final UnicodeCharProperties character}) =
       _$SavedImpl;
 
-  UnicodeCharacter get character;
+  UnicodeCharProperties get character;
 
   /// Create a copy of SaveCharacterState
   /// with the given fields replaced by the non-null parameter values.
@@ -559,7 +547,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() saving,
-    required TResult Function(UnicodeCharacter character) saved,
+    required TResult Function(UnicodeCharProperties character) saved,
     required TResult Function(String? error) error,
   }) {
     return error(this.error);
@@ -570,7 +558,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? saving,
-    TResult? Function(UnicodeCharacter character)? saved,
+    TResult? Function(UnicodeCharProperties character)? saved,
     TResult? Function(String? error)? error,
   }) {
     return error?.call(this.error);
@@ -581,7 +569,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? saving,
-    TResult Function(UnicodeCharacter character)? saved,
+    TResult Function(UnicodeCharProperties character)? saved,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {

@@ -3,7 +3,7 @@ import 'package:gsoc_unicode_app/features/unicode_characters/blocs/unicode_chara
 import '../../../helpers/test_helpers.dart';
 
 void main() {
-  group('UnicodeCharPropertiesCubit', () {
+  group('UnicodeCharPropertiesBloc', () {
     test('initial state is UnicodeCharPropertiesState.initial()', () {
       // Test the initial state directly without creating the bloc
       const initialState = UnicodeCharPropertiesState.initial();

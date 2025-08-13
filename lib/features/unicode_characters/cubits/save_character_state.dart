@@ -14,7 +14,7 @@ class SaveCharacterState with _$SaveCharacterState {
 
   /// Saved state for save character.
   const factory SaveCharacterState.saved({
-    required UnicodeCharacter character,
+    required UnicodeCharProperties character,
   }) = _Saved;
 
   /// Error state for save character.

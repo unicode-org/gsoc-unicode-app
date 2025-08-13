@@ -9,22 +9,22 @@ part of 'all_recent_characters_cubit.dart';
 class AllRecentCharactersState with _$AllRecentCharactersState {
   /// Initial state for all recently viewed characters.
   const factory AllRecentCharactersState.initial({
-    @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
+    @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
   }) = _Initial;
 
   /// Loading state for all recently viewed characters.
   const factory AllRecentCharactersState.loading({
-    @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
+    @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
   }) = _Loading;
 
   /// Loaded state for all recently viewed characters.
   const factory AllRecentCharactersState.loaded({
-    required List<UnicodeCharacter> characters,
+    required List<UnicodeCharProperties> characters,
   }) = _Loaded;
 
   /// Error state for all recently viewed characters.
   const factory AllRecentCharactersState.error({
     String? error,
-    @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
+    @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
   }) = _Error;
 }

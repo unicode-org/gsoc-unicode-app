@@ -4,6 +4,7 @@
 /// storage, and BLoC observers, and launches the main app widget.
 library;
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +21,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 /// Sets up the BLoC observer, initializes storage, and runs the app.
 void main() async {
   Bloc.observer = AppBlocObserver();
+  await RustLib.init();
   await AppStorage.init();
   runApp(MainApp());
 }
@@ -57,9 +59,15 @@ class MainApp extends StatelessWidget {
             providers: [
               BlocProvider(
                 lazy: false,
-                create: (context) =>
-                    UnicodeCharactersCubit()..loadUnicodeCharacters(),
+                create: (context) => UnicodeCharPropertiesBloc()
+                  ..add(
+                      const UnicodeCharPropertiesEvent.getCharacters(page: 1)),
               ),
+              // BlocProvider(
+              //   lazy: false,
+              //   create: (context) =>
+              //       UnicodeCharPropertiessCubit()..loadUnicodeCharPropertiess(),
+              // ),
               BlocProvider(
                 lazy: false,
                 create: (context) =>

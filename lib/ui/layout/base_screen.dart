@@ -40,7 +40,9 @@ class _BaseScreen extends StatefulHookWidget {
   State<_BaseScreen> createState() => __BaseScreenState();
 }
 
+/// Internal state class for managing the base screen navigation and UI.
 class __BaseScreenState extends State<_BaseScreen> {
+  /// Builds the widget tree for the base screen with navigation.
   @override
   Widget build(BuildContext context) {
     final locale = context.appLocalizations;

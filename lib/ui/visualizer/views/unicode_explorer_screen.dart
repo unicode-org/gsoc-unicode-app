@@ -24,42 +24,61 @@ class UnicodeExplorerScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final locale = context.appLocalizations;
-    final filteredCharacters =
-        context.watch<UnicodeCharactersCubit>().state.filteredCharacters;
-    final characters = context.watch<UnicodeCharactersCubit>().state.characters;
+    final unicodeCharPropertiesState =
+        context.watch<UnicodeCharPropertiesBloc>().state;
+    final characters = unicodeCharPropertiesState.characters;
     final recentlyViewedCharacters =
         context.watch<AllRecentCharactersCubit>().state.characters;
     final query = useState<String>('');
+    final scrollController = useScrollController();
 
-    return Scaffold(
-      backgroundColor: AppTheme.screenShade,
-      appBar: CustomAppBar(title: locale.unicodeExplorer),
-      body: CustomScrollView(
-        slivers: [
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: _SearchBarDelegate(
-              onChanged: (value) {
-                query.value = value;
-                if (value.isNotEmpty) {
-                  context.read<UnicodeCharactersCubit>().loadUnicodeCharacters(
-                        filter: value,
-                      );
-                } else {
-                  context
-                      .read<UnicodeCharactersCubit>()
-                      .loadUnicodeCharacters();
-                }
-              },
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (unicodeCharPropertiesState.showLoadMore &&
+            notification.metrics.pixels ==
+                notification.metrics.maxScrollExtent) {
+          context.read<UnicodeCharPropertiesBloc>().add(
+                UnicodeCharPropertiesEvent.getCharacters(
+                  page: unicodeCharPropertiesState.pageNo + 1,
+                ),
+              );
+        }
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: AppTheme.screenShade,
+        appBar: CustomAppBar(title: locale.unicodeExplorer),
+        body: CustomScrollView(
+          controller: scrollController,
+          slivers: [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: _SearchBarDelegate(
+                onChanged: (value) {
+                  query.value = value;
+                  if (value.isNotEmpty) {
+                    context.read<UnicodeCharPropertiesBloc>().add(
+                          UnicodeCharPropertiesEvent.getCharacters(
+                            searchQuery: value,
+                            page: 1,
+                          ),
+                        );
+                  } else {
+                    context.read<UnicodeCharPropertiesBloc>().add(
+                          const UnicodeCharPropertiesEvent.getCharacters(
+                            page: 1,
+                          ),
+                        );
+                  }
+                },
+              ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (query.value.isEmpty) ...[
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
                       locale.recentlyViewed,
                       style: GoogleFonts.notoSans(
@@ -93,17 +112,17 @@ class UnicodeExplorerScreen extends HookWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    CharacterView(characters: characters),
-                    const SizedBox(height: 30),
-                  ] else ...[
-                    CharacterView(characters: filteredCharacters),
+                    CharacterView(
+                      controller: scrollController,
+                      characters: characters,
+                    ),
                     const SizedBox(height: 30),
                   ],
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -114,10 +133,13 @@ class UnicodeExplorerScreen extends HookWidget {
 // This delegate is responsible for the persistent search bar at the top of the
 // screen.
 class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
+  /// Creates a [_SearchBarDelegate] with the given [onChanged] callback.
   _SearchBarDelegate({this.onChanged});
 
+  /// Callback function called when the search text changes.
   final void Function(String)? onChanged;
 
+  /// Builds the persistent search bar widget.
   @override
   Widget build(
     BuildContext context,
@@ -142,14 +164,15 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
     );
   }
 
-  // 33 (top padding) + 50 (approx SearchField height) + 20 (bottom padding)
+  /// The maximum height of the search bar.
   @override
   double get maxExtent => 33 + 50 + 20;
 
-  //  match maxExtent for a fixed search bar
+  /// The minimum height of the search bar (matches maxExtent for fixed height).
   @override
   double get minExtent => 33 + 50 + 20;
 
+  /// Whether the delegate should rebuild when the old delegate changes.
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       false;

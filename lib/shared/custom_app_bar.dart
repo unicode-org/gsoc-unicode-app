@@ -92,6 +92,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: AppBar(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         leading: leading != null
             ? GestureDetector(
                 onTap: onTap ?? () => Navigator.of(context).pop(),

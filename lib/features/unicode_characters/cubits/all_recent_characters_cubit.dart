@@ -3,9 +3,9 @@
 /// Loads and emits the list of recently viewed characters from storage.
 library;
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gsoc_unicode_app/models/models.dart';
 import 'package:gsoc_unicode_app/storage/storage.dart';
 
 part 'all_recent_characters_state.dart';

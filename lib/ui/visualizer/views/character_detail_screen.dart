@@ -3,13 +3,13 @@
 /// Allows users to view character metadata, font rendering, and save/remove the character.
 library;
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
 import 'package:gsoc_unicode_app/features/features.dart';
-import 'package:gsoc_unicode_app/models/models.dart';
 import 'package:gsoc_unicode_app/shared/shared.dart';
 import 'package:gsoc_unicode_app/ui/ui.dart';
 import 'package:gsoc_unicode_app/utils/utils.dart';
@@ -20,7 +20,7 @@ class CharacterDetailScreen extends StatelessWidget {
   const CharacterDetailScreen({required this.character, super.key});
 
   /// The Unicode character to display details for.
-  final UnicodeCharacter character;
+  final UnicodeCharProperties character;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _CharacterDetailScreen extends HookWidget {
   const _CharacterDetailScreen({required this.character});
 
   /// The Unicode character to display details for.
-  final UnicodeCharacter character;
+  final UnicodeCharProperties character;
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +62,7 @@ class _CharacterDetailScreen extends HookWidget {
     final savedCharacters =
         context.watch<SavedCharactersCubit>().state.characters;
     final savedCharacter = useState<bool>(savedCharacters.contains(character));
-    final plane = character.plane;
-    final match = RegExp(r'\(([^)]+)\)').firstMatch(plane);
-    final mainPlane = match != null ? match.group(1) : '';
+    final mappedCharacter = useState<String?>(null);
 
     useEffect(
       () {
@@ -74,6 +72,11 @@ class _CharacterDetailScreen extends HookWidget {
             .saveRecentlyViewedCharacter(
               character: character,
             );
+        final caseMappingResult =
+            getCharacterCaseMapping(character: character.character);
+        mappedCharacter.value = caseMappingResult.hasMapping == true
+            ? caseMappingResult.mapped
+            : null;
         return null;
       },
       [],
@@ -138,17 +141,23 @@ class _CharacterDetailScreen extends HookWidget {
                 children: [
                   InformationTile(
                     detail: locale.name,
-                    info: character.characterName,
+                    info: character.name ?? '',
                   ),
                   InformationTile(
                     detail: locale.codePoint,
-                    info: character.codePoint,
+                    info: character.unicodeValue ?? '',
                   ),
-                  InformationTile(detail: locale.block, info: character.block),
-                  InformationTile(detail: locale.plane, info: mainPlane ?? ''),
+                  InformationTile(
+                    detail: locale.block,
+                    info: character.block ?? '',
+                  ),
+                  InformationTile(
+                    detail: locale.plane,
+                    info: character.plane ?? '',
+                  ),
                   InformationTile(
                     detail: locale.category,
-                    info: character.category,
+                    info: character.generalCategory ?? '',
                     lastItem: true,
                   ),
                 ],
@@ -176,7 +185,8 @@ class _CharacterDetailScreen extends HookWidget {
                 children: [
                   InformationTile(
                     detail: 'Font',
-                    info: character.character,
+                    info:
+                        '''${character.character}${mappedCharacter.value != null ? ' → ${mappedCharacter.value}' : ''}''',
                     isFontText: true,
                     lastItem: true,
                   ),

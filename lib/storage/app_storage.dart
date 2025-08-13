@@ -6,8 +6,8 @@ library;
 
 import 'dart:convert';
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter/foundation.dart';
-import 'package:gsoc_unicode_app/models/unicode_character_model.dart';
 import 'package:gsoc_unicode_app/storage/storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -43,10 +43,10 @@ class AppStorage {
     await _box?.clear();
   }
 
-  /// Saves a [UnicodeCharacter] to the saved characters list in storage.
+  /// Saves a [UnicodeCharProperties] to the saved characters list in storage.
   ///
   /// Inserts the character at the beginning of the list.
-  static Future<void> saveCharacter(UnicodeCharacter character) async {
+  static Future<void> saveCharacter(UnicodeCharProperties character) async {
     try {
       final characterList = [...getSavedCharacters()]..insert(0, character);
       final encoded = jsonEncode(characterList.map((c) => c.toJson()).toList());
@@ -59,15 +59,16 @@ class AppStorage {
   /// Retrieves the list of saved Unicode characters from storage.
   ///
   /// Returns an empty list if none are found or on error.
-  static List<UnicodeCharacter> getSavedCharacters() {
+  static List<UnicodeCharProperties> getSavedCharacters() {
     try {
       final savedCharacters = _box?.get(savedCharactersKey);
-      var characterList = <UnicodeCharacter>[];
+      var characterList = <UnicodeCharProperties>[];
 
       if (savedCharacters != null) {
         final decoded = jsonDecode(savedCharacters) as List<dynamic>;
         characterList = decoded
-            .map((e) => UnicodeCharacter.fromJson(e as Map<String, dynamic>))
+            .map((e) =>
+                (e as Map<String, dynamic>).fromUnicodeCharPropertiesJson())
             .toList();
       }
       return characterList;
@@ -77,15 +78,15 @@ class AppStorage {
     }
   }
 
-  /// Saves a [UnicodeCharacter] as recently viewed.
+  /// Saves a [UnicodeCharProperties] as recently viewed.
   ///
   /// Removes any existing instance and inserts the character at the beginning.
   static Future<void> saveRecentlyViewedCharacter(
-    UnicodeCharacter character,
+    UnicodeCharProperties character,
   ) async {
     try {
       final characterList = [...getRecentlyViewedCharacters()]
-        ..removeWhere((c) => c.characterName == character.characterName)
+        ..removeWhere((c) => c.character == character.character)
         ..insert(0, character);
 
       final encoded = jsonEncode(characterList.map((c) => c.toJson()).toList());
@@ -98,15 +99,15 @@ class AppStorage {
   /// Retrieves the list of recently viewed Unicode characters from storage.
   ///
   /// Returns only the latest 5 characters.
-  static List<UnicodeCharacter> getRecentlyViewedCharacters() {
+  static List<UnicodeCharProperties> getRecentlyViewedCharacters() {
     try {
       final encoded = _box?.get(recentCharacterKey);
       if (encoded == null) return [];
 
       final decoded = jsonDecode(encoded) as List;
       final characters = decoded
-          .map(
-              (item) => UnicodeCharacter.fromJson(item as Map<String, dynamic>))
+          .map((item) =>
+              (item as Map<String, dynamic>).fromUnicodeCharPropertiesJson())
           .toList();
 
       return characters.take(5).toList();
@@ -116,11 +117,12 @@ class AppStorage {
     }
   }
 
-  /// Removes a [UnicodeCharacter] from the saved characters list in storage.
-  static Future<void> removeCharacter(UnicodeCharacter character) async {
+  /// Removes a [UnicodeCharProperties] from the saved characters list in
+  /// storage.
+  static Future<void> removeCharacter(UnicodeCharProperties character) async {
     try {
       final characterList = [...getSavedCharacters()]
-        ..removeWhere((c) => c.characterName == character.characterName);
+        ..removeWhere((c) => c.character == character.character);
 
       final encoded = jsonEncode(characterList.map((c) => c.toJson()).toList());
       await _box?.put(savedCharactersKey, encoded);

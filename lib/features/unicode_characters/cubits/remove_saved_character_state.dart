@@ -14,7 +14,7 @@ class RemoveSavedCharacterState with _$RemoveSavedCharacterState {
 
   /// Removed state for remove saved character.
   const factory RemoveSavedCharacterState.removed({
-    required UnicodeCharacter character,
+    required UnicodeCharProperties character,
   }) = _Removed;
 
   /// Error state for remove saved character.

@@ -1,7 +1,7 @@
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
-import 'package:gsoc_unicode_app/models/models.dart';
 
 /// A widget that displays a recent text box with a character and code point.
 class RecentTextBox extends StatelessWidget {
@@ -12,12 +12,13 @@ class RecentTextBox extends StatelessWidget {
     super.key,
   });
 
-  /// Character.
-  final UnicodeCharacter character;
+  /// The Unicode character to display.
+  final UnicodeCharProperties character;
 
-  /// On tap Navigates to character detail screen.
+  /// Callback for navigation to character detail screen.
   final VoidCallback onTap;
 
+  /// Builds the widget tree for the recent text box.
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -38,7 +39,7 @@ class RecentTextBox extends StatelessWidget {
               style: GoogleFonts.notoSans(color: Colors.black, fontSize: 80),
             ),
             Text(
-              character.codePoint,
+              character.unicodeValue ?? '',
               style: GoogleFonts.notoSans(color: Colors.black, fontSize: 16),
             ),
           ],

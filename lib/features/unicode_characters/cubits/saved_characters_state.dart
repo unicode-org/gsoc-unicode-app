@@ -8,22 +8,22 @@ part of 'saved_characters_cubit.dart';
 class SavedCharactersState with _$SavedCharactersState {
   /// Initial state for saved characters.
   const factory SavedCharactersState.initial({
-    @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
+    @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
   }) = _Initial;
 
   /// Loading state for saved characters.
   const factory SavedCharactersState.loading({
-    @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
+    @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
   }) = _Loading;
 
   /// Loaded state for saved characters.
   const factory SavedCharactersState.loaded({
-    required List<UnicodeCharacter> characters,
+    required List<UnicodeCharProperties> characters,
   }) = _Loaded;
 
   /// Error state for saved characters.
   const factory SavedCharactersState.error({
     String? error,
-    @Default(<UnicodeCharacter>[]) List<UnicodeCharacter> characters,
+    @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
   }) = _Error;
 }

@@ -3,10 +3,10 @@
 /// Handles saving a character as recently viewed and updates the global list.
 library;
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gsoc_unicode_app/features/unicode_characters/cubits/all_recent_characters_cubit.dart';
-import 'package:gsoc_unicode_app/models/models.dart';
 import 'package:gsoc_unicode_app/storage/storage.dart';
 
 part 'recently_viewed_character_state.dart';
@@ -32,7 +32,7 @@ class RecentlyViewedCharacterCubit extends Cubit<RecentlyViewedCharacterState> {
   ///
   /// Emits [_Saving], then [_Saved] or [_Error].
   Future<void> saveRecentlyViewedCharacter({
-    required UnicodeCharacter character,
+    required UnicodeCharProperties character,
   }) async {
     try {
       emit(const _Saving());
