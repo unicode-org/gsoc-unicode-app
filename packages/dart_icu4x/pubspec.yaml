@@ -1,5 +1,5 @@
 name: dart_icu4x
-description: "A new Flutter FFI plugin project."
+description: "Bindings for ICU4X Properties generated with flutter_rust_bridge"
 version: 0.0.1
 homepage: "https://github.com/unicode-org/gsoc-unicode-app"
 

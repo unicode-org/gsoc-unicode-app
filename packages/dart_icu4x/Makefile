@@ -1,4 +1,3 @@
-
 help: ## This help dialog.
 	@IFS=$$'\n' ; \
 	help_lines=(`fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//'`); \
@@ -10,14 +9,18 @@ help: ## This help dialog.
 			printf "%-30s %s\n" $$help_command $$help_info ; \
 	done
 
-fresh: ## Runs `clean`, `codegen-build`, and `generate-intl` for a fresh setup.
-	make clean 
-
-clean: ## Cleans Flutter project.
+clean: ## Cleans the project build artifacts.
 	flutter clean
+	cargo clean --manifest-path rust/Cargo.toml
+
+setup: ## Installs dependencies and generates code.
 	flutter pub get
-	cargo build --manifest-path rust/Cargo.toml 
-	flutter_rust_bridge_codegen generate
+	make cargo-build
+	make generate
+
+fresh: ## Runs `clean` and `setup` for a fresh setup.
+	make clean
+	make setup
 
 cargo-build: ## Runs `cargo build --manifest-path rust/Cargo.toml`.
 	cargo build --manifest-path rust/Cargo.toml 

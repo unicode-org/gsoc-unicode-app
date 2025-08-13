@@ -112,7 +112,7 @@ List<UnicodeCharProperties> results = getUnicodeCharProperties(
 ```yaml
 dependencies:
   dart_icu4x:
-    path: ../icu4x/dart_icu4x
+    path: ../dart_icu4x
 ```
 
 2. **Initialize the library** in your app:

@@ -11,6 +11,7 @@ use icu_properties::CodePointSetData;
 use unicode_names2::name;
 use unicode_blocks::find_unicode_block;
 use icu_properties::props::*;
+use once_cell::sync::Lazy;
 
 #[derive(Serialize)]
 pub struct UnicodeCharProperties {
@@ -63,7 +64,7 @@ pub struct UnicodeCharProperties {
     #[serde(default)]
     pub is_emoji_presentation: Option<bool>,
     #[serde(default)]
-    pub is_emoji_modifier: Option<bool>,
+    pub is_emoji_modifier: Option<bool>,    
     #[serde(default)]
     pub is_emoji_modifier_base: Option<bool>,
 }
@@ -96,55 +97,34 @@ pub fn get_unicode_char_properties(
     let emoji_modifier = CodePointSetData::new::<EmojiModifier>();
     let emoji_modifier_base = CodePointSetData::new::<EmojiModifierBase>();
 
-    let mut results: Vec<char> = Vec::new();
+    let results: Vec<char> = CodePointInversionList::all()
+        .iter_chars()
+        .filter(|&c| {
+            if let Some(ref s) = search {
+                let s = s.to_lowercase();
+                let char_str = c.to_string().to_lowercase();
+                let code_point_str = (c as u32).to_string();
+                let unicode_value = format!("U+{:04X}", c as u32).to_lowercase();
+                let general_category = format!("{:?}", general_category_map.get(c)).to_lowercase();
+                let name_str = name(c)
+                    .map(|n| n.to_string().to_lowercase())
+                    .unwrap_or_else(|| "unknown".to_string());
 
-    if let Some(ref s) = search {
-        if !s.is_empty() {
-            // If search is a single character, search for that specific character
-            let mut chars = s.chars();
-            if let Some(c) = chars.next() {
-                if chars.next().is_none() {
-                    results.push(c);
-                } else {
-                    // Search is multiple characters, filter across all fields
-                    results = CodePointInversionList::all()
-                        .iter_chars()
-                        .filter(|&c| {
-                            let char_str = c.to_string();
-                            let code_point_str = (c as u32).to_string();
-                            let unicode_value = format!("U+{:04X}", c as u32);
-                            let general_category = format!("{:?}", general_category_map.get(c));
-                            
-                            s.to_lowercase().contains(&char_str.to_lowercase()) ||
-                            code_point_str.contains(s) ||
-                            unicode_value.to_lowercase().contains(&s.to_lowercase()) ||
-                            general_category.to_lowercase().contains(&s.to_lowercase())
-                        })
-                        .collect();
-                }
+                char_str.contains(&s)
+                    || code_point_str.contains(&s)
+                    || unicode_value.contains(&s)
+                    || general_category.contains(&s)
+                    || name_str.contains(&s)
             } else {
-                // Empty search string, treat as no search
-                results = CodePointInversionList::all()
-                    .iter_chars()
-                    .collect();
+                true
             }
-        } else {
-            // search is Some("") (empty string), treat as no search
-            results = CodePointInversionList::all()
-                .iter_chars()
-                .collect();
-        }
-    } else {
-        // search is None
-        results = CodePointInversionList::all()
-            .iter_chars()
-            .collect();
-    }
+        })
+        .skip(offset)
+        .take(limit)
+        .collect();
 
     results
         .into_iter()
-        .skip(offset)
-        .take(limit)
         .map(|c| UnicodeCharProperties {
             character: c.to_string(),
             code_point: c as u32,
