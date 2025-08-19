@@ -7,6 +7,7 @@ import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `get_plane_name`
+// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `ScriptCharactersResult`
 
 List<UnicodeCharProperties> getUnicodeCharProperties({
   String? search,
@@ -17,6 +18,10 @@ List<UnicodeCharProperties> getUnicodeCharProperties({
   offset: offset,
   limit: limit,
 );
+
+/// Return the list of all script names (long names) present across Unicode scalar values.
+List<String> getAllScripts() =>
+    RustLib.instance.api.crateApiSimpleGetAllScripts();
 
 CaseMappingResult getCharacterCaseMapping({required String character}) =>
     RustLib.instance.api.crateApiSimpleGetCharacterCaseMapping(

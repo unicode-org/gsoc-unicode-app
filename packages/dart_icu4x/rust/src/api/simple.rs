@@ -68,6 +68,17 @@ pub struct UnicodeCharProperties {
     pub is_emoji_modifier_base: Option<bool>,
 }
 
+/// Utilities for Scripts
+use std::collections::BTreeSet;
+
+#[derive(Serialize)]
+pub struct ScriptCharactersResult {
+    pub script_long_name: String,
+    pub script_short_name: String,
+    pub total_count: usize,
+    pub characters: Vec<UnicodeCharProperties>,
+}
+
 #[flutter_rust_bridge::frb(sync)]
 pub fn get_unicode_char_properties(
     search: Option<String>,
@@ -105,6 +116,8 @@ pub fn get_unicode_char_properties(
                 let code_point_str = (c as u32).to_string();
                 let unicode_value = format!("U+{:04X}", c as u32).to_lowercase();
                 let general_category = format!("{:?}", general_category_map.get(c)).to_lowercase();
+                let script_long = script_map.get(c).long_name().to_lowercase();
+                let script_short = script_map.get(c).short_name().to_lowercase();
                 let name_str = name(c)
                     .map(|n| n.to_string().to_lowercase())
                     .unwrap_or_else(|| "unknown".to_string());
@@ -113,6 +126,8 @@ pub fn get_unicode_char_properties(
                     || code_point_str.contains(&s)
                     || unicode_value.contains(&s)
                     || general_category.contains(&s)
+                    || script_long.contains(&s)
+                    || script_short.contains(&s)
                     || name_str.contains(&s)
             } else {
                 true
@@ -132,7 +147,7 @@ pub fn get_unicode_char_properties(
             block: Some(find_unicode_block(c).map(|b| b.name()).unwrap_or("UNKNOWN").to_string()),
             plane: Some(get_plane_name(c as u32).to_string()),
             general_category: Some(format!("{:?}", general_category_map.get(c))),
-            script: Some(format!("{:?}", script_map.get(c))),
+            script: Some(script_map.get(c).long_name().to_string()),
             bidi_class: Some(format!("{:?}", bidi_class_map.get(c))),
             east_asian_width: Some(format!("{:?}", east_asian_width_map.get(c))),
             line_break: Some(format!("{:?}", line_break_map.get(c))),
@@ -153,6 +168,20 @@ pub fn get_unicode_char_properties(
             is_emoji_modifier: Some(emoji_modifier.contains(c)),
             is_emoji_modifier_base: Some(emoji_modifier_base.contains(c)),
         }).collect()
+}
+
+/// Return the list of all script names (long names) present across Unicode scalar values.
+#[flutter_rust_bridge::frb(sync)]
+pub fn get_all_scripts() -> Vec<String> {
+    let script_map = CodePointMapData::<Script>::new();
+    let mut names: BTreeSet<String> = BTreeSet::new();
+
+    for c in CodePointInversionList::all().iter_chars() {
+        let s = script_map.get(c);
+        names.insert(s.long_name().to_string());
+    }
+
+    names.into_iter().collect()
 }
 
 /// Get the name of the plane for a given code point.
