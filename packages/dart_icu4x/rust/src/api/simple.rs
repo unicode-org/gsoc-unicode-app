@@ -331,23 +331,14 @@ pub fn get_script_for_char(ch: char) -> String {
 /// A string that describes the plane of the given code point.
 fn get_plane_name(code_point: u32) -> &'static str {
     match code_point {
-        0x0000..=0xFFFF => "Basic Multilingual Plane [1]",
-        0x10000..=0x1FFFF => "Supplementary Multilingual Plane [2]",
-        0x20000..=0x2FFFF => "Supplementary Ideographic Plane [3]",
-        0x30000..=0x3FFFF => "Tertiary Ideographic Plane [4]",
-        0x40000..=0x4FFFF => "Unassigned [5]",
-        0x50000..=0x5FFFF => "Unassigned [6]",
-        0x60000..=0x6FFFF => "Unassigned [7]",
-        0x70000..=0x7FFFF => "Unassigned [8]",
-        0x80000..=0x8FFFF => "Unassigned [9]",
-        0x90000..=0x9FFFF => "Unassigned [10]",
-        0xA0000..=0xAFFFF => "Unassigned [11]",
-        0xB0000..=0xBFFFF => "Supplementary Special-purpose Plane [14]",
-        0xC0000..=0xCFFFF => "Unassigned [13]",
-        0xD0000..=0xDFFFF => "Unassigned [14]",
-        0xE0000..=0xEFFFF => "Supplementary Private Use Area-A [15]",
-        0xF0000..=0xFFFFF => "Supplementary Private Use Area-B [16]",
-        0x100000..=0x10FFFF => "Supplementary Private Use Area-B [17]",
+        0x0000..=0xFFFF => "Basic Multilingual Plane (BMP) [0]",
+        0x10000..=0x1FFFF => "Supplementary Multilingual Plane (SMP) [1]",
+        0x20000..=0x2FFFF => "Supplementary Ideographic Plane (SIP) [2]",
+        0x30000..=0x3FFFF => "Tertiary Ideographic Plane (TIP) [3]",
+        0x40000..=0xDFFFF => "Unassigned",
+        0xE0000..=0xEFFFF => "Supplementary Special-purpose Plane (SSP) [14]",
+        0xF0000..=0xFFFFF => "Supplementary Private Use Area-A (PUA-A) [15]",
+        0x100000..=0x10FFFF => "Supplementary Private Use Area-B (PUA-B) [16]",
         _ => "Unassigned",
     }
 }

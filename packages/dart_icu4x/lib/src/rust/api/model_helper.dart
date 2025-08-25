@@ -35,7 +35,7 @@ extension UnicodeCharPropertiesX on UnicodeCharProperties {
 }
 
 /// Extension methods for UnicodeCharProperties
-extension MapX on Map<String, dynamic> {
+extension UnicodeCharPropertiesMapX on Map<String, dynamic> {
   /// Convert a JSON object to UnicodeCharProperties
   UnicodeCharProperties fromUnicodeCharPropertiesJson() =>
       UnicodeCharProperties(

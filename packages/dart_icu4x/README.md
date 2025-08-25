@@ -54,7 +54,7 @@ dart_icu4x/
 ### Platform Support
 - **Android**: Native ARM64 and x86_64 support
 - **iOS**: Native ARM64 and x86_64 support
-- **web**: Web support 
+- **web**: Web support
 
 ## Features
 
