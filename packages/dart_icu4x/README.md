@@ -53,7 +53,8 @@ dart_icu4x/
 
 ### Platform Support
 - **Android**: Native ARM64 and x86_64 support
-- **iOS**: Native ARM64 and x86_64 support  
+- **iOS**: Native ARM64 and x86_64 support
+- **web**: Web support 
 
 ## Features
 
@@ -108,7 +109,7 @@ List<UnicodeCharProperties> results = getUnicodeCharProperties(
 
 ### Adding to Your Project
 
-1. **Add dependency** to your `pubspec.yaml`:
+1. **Add dependency** to your `pubspec.yaml` for local setup:
 ```yaml
 dependencies:
   dart_icu4x:
@@ -234,4 +235,3 @@ For issues and questions:
 - Check the [example application](example/) for usage patterns
 - Review the [ICU4X documentation](https://docs.rs/icu/)
 - Open an issue on the project repository
-

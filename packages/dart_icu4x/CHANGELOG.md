@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Initial release of the `dart_icu4x` package, providing Flutter bindings for ICU4X properties and case mapping

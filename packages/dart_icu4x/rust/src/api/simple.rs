@@ -14,7 +14,6 @@ use icu_properties::CodePointSetDataBorrowed;
 use icu_properties::props::*;
 use unicode_names2::name;
 use unicode_blocks::find_unicode_block;
-use std::collections::BTreeSet;
 use icu_casemap::CaseMapper;
 use icu_locale_core::LanguageIdentifier;
 use std::sync::OnceLock; 
@@ -202,7 +201,7 @@ pub struct UnicodeCharProperties {
     #[serde(default)]
     pub is_emoji_presentation: Option<bool>,
     #[serde(default)]
-    pub is_emoji_modifier: Option<bool>,    
+    pub is_emoji_modifier: Option<bool>,
     #[serde(default)]
     pub is_emoji_modifier_base: Option<bool>,
 }
@@ -310,28 +309,12 @@ pub fn get_unicode_char_properties(
         .collect()
 }
 
-/// Return the list of all script names (long names) present across Unicode scalar values.
-#[flutter_rust_bridge::frb(sync)]
-/// Return the sorted list of all script long names present in Unicode.
-pub fn get_all_scripts() -> Vec<String> {
-    let script_map: CodePointMapDataBorrowed<'static, Script> = CodePointMapDataBorrowed::<Script>::new();
-    let mut names: BTreeSet<String> = BTreeSet::new();
-
-    for c in CodePointInversionList::all().iter_chars() {
-        let s = script_map.get(c);
-        names.insert(s.long_name().to_string());
-    }
-
-    names.into_iter().collect()
-}
-
 #[flutter_rust_bridge::frb(sync)]
 /// Return the script long name for a single character.
 ///
 /// Panics only if ICU4X script data is unavailable (should not happen).
 pub fn get_script_for_char(ch: char) -> String {
-    let script_map: CodePointMapDataBorrowed<'static, Script> = CodePointMapDataBorrowed::<Script>::new();
-    script_map.get(ch).long_name().to_string()
+    get_script().get(ch).long_name().to_string()
 }
 
 /// Get the name of the plane for a given code point.

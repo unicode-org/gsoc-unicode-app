@@ -24,11 +24,6 @@ List<UnicodeCharProperties> getUnicodeCharProperties({
   limit: limit,
 );
 
-/// Return the list of all script names (long names) present across Unicode scalar values.
-/// Return the sorted list of all script long names present in Unicode.
-List<String> getAllScripts() =>
-    RustLib.instance.api.crateApiSimpleGetAllScripts();
-
 /// Return the script long name for a single character.
 ///
 /// Panics only if ICU4X script data is unavailable (should not happen).

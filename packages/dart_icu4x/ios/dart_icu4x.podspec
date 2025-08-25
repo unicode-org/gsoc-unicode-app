@@ -11,7 +11,7 @@ Bindings for ICU4X Properties generated with flutter_rust_bridge
                        DESC
   s.homepage         = 'https://github.com/unicode-org/gsoc-unicode-app'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'YThe Unicode Consortium' => 'https://icu4x.unicode.org/' }
+  s.author           = { 'The Unicode Consortium' => 'https://icu4x.unicode.org/' }
 
   # This will ensure the source files in Classes/ are included in the native
   # builds of apps using this FFI plugin. Podspec does not support relative
@@ -20,7 +20,7 @@ Bindings for ICU4X Properties generated with flutter_rust_bridge
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '11.0'
+  s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
