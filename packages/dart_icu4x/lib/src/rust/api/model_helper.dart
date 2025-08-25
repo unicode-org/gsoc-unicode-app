@@ -1,4 +1,4 @@
-import 'package:dart_icu4x/dart_icu4x.dart';
+import 'simple.dart';
 
 /// Extension methods for UnicodeCharProperties
 extension UnicodeCharPropertiesX on UnicodeCharProperties {

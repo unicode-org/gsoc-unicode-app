@@ -357,7 +357,7 @@ pub struct CaseMappingResult {
 /// with the original text unchanged.
 pub fn get_character_case_mapping(character: String) -> CaseMappingResult {
     let casemapper = CaseMapper::new();
-    let langid: LanguageIdentifier = "und".parse().expect("Failed to parse 'und' as a language identifier");
+    let langid = LanguageIdentifier::try_from_str("und").expect("Failed to parse 'und' as a language identifier");
     
     let mut chars = character.chars();
     let c = match chars.next() {
