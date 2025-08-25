@@ -6,9 +6,14 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `get_plane_name`
+// These functions are ignored because they are not marked as `pub`: `get_alphabetic`, `get_bidi_class`, `get_dash`, `get_diacritic`, `get_east_asian_width`, `get_emoji_modifier_base`, `get_emoji_modifier`, `get_emoji_presentation`, `get_emoji`, `get_general_category`, `get_grapheme_break`, `get_hangul`, `get_joining`, `get_line_break`, `get_lowercase`, `get_math`, `get_plane_name`, `get_script`, `get_sentence_break`, `get_uppercase`, `get_white_space`, `get_word_break`, `map_to_properties`, `matches_search`, `safe_name`
 // These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `ScriptCharactersResult`
 
+/// Return a page of Unicode character properties filtered by an optional query.
+///
+/// - `search`: optional lowercased substring to match against multiple fields.
+/// - `offset`: number of matching characters to skip (start index, inclusive).
+/// - `limit`: exclusive end index; the function returns at most `limit - offset` items.
 List<UnicodeCharProperties> getUnicodeCharProperties({
   String? search,
   required BigInt offset,
@@ -20,9 +25,20 @@ List<UnicodeCharProperties> getUnicodeCharProperties({
 );
 
 /// Return the list of all script names (long names) present across Unicode scalar values.
+/// Return the sorted list of all script long names present in Unicode.
 List<String> getAllScripts() =>
     RustLib.instance.api.crateApiSimpleGetAllScripts();
 
+/// Return the script long name for a single character.
+///
+/// Panics only if ICU4X script data is unavailable (should not happen).
+String getScriptForChar({required String ch}) =>
+    RustLib.instance.api.crateApiSimpleGetScriptForChar(ch: ch);
+
+/// Return case mapping information (upper/lower) for a single-character string.
+///
+/// If the input is not exactly one Unicode scalar value, returns `has_mapping = false`
+/// with the original text unchanged.
 CaseMappingResult getCharacterCaseMapping({required String character}) =>
     RustLib.instance.api.crateApiSimpleGetCharacterCaseMapping(
       character: character,

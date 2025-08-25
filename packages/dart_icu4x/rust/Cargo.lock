@@ -201,7 +201,6 @@ dependencies = [
  "icu_locid",
  "icu_properties",
  "icu_provider",
- "once_cell",
  "serde",
  "unicode-blocks",
  "unicode_names2",

@@ -1,3 +1,6 @@
+/// Initialize the Rust side of the Flutter bridge and set up default utilities.
+///
+/// Called once by Flutter to perform library initialization.
 #[flutter_rust_bridge::frb(init)]
 pub fn init_app() {
     // Default utilities - feel free to customize
@@ -6,11 +9,147 @@ pub fn init_app() {
 
 use serde::Serialize;
 use icu_collections::codepointinvlist::CodePointInversionList;
-use icu_properties::CodePointMapData;
-use icu_properties::CodePointSetData;
+use icu_properties::CodePointMapDataBorrowed;
+use icu_properties::CodePointSetDataBorrowed;
+use icu_properties::props::*;
 use unicode_names2::name;
 use unicode_blocks::find_unicode_block;
-use icu_properties::props::*;
+use std::collections::BTreeSet;
+use icu_casemap::CaseMapper;
+use icu_locale_core::LanguageIdentifier;
+use std::sync::OnceLock; 
+
+static GENERAL_CATEGORY: OnceLock<CodePointMapDataBorrowed<'static, GeneralCategory>> = OnceLock::new();
+static SCRIPT: OnceLock<CodePointMapDataBorrowed<'static, Script>> = OnceLock::new();
+static BIDI_CLASS: OnceLock<CodePointMapDataBorrowed<'static, BidiClass>> = OnceLock::new();
+static EAST_ASIAN_WIDTH: OnceLock<CodePointMapDataBorrowed<'static, EastAsianWidth>> = OnceLock::new();
+static LINE_BREAK: OnceLock<CodePointMapDataBorrowed<'static, LineBreak>> = OnceLock::new();
+static WORD_BREAK: OnceLock<CodePointMapDataBorrowed<'static, WordBreak>> = OnceLock::new();
+static SENTENCE_BREAK: OnceLock<CodePointMapDataBorrowed<'static, SentenceBreak>> = OnceLock::new();
+static GRAPHEME_BREAK: OnceLock<CodePointMapDataBorrowed<'static, GraphemeClusterBreak>> = OnceLock::new();
+static HANGUL: OnceLock<CodePointMapDataBorrowed<'static, HangulSyllableType>> = OnceLock::new();
+static JOINING: OnceLock<CodePointMapDataBorrowed<'static, JoiningType>> = OnceLock::new();
+static ALPHABETIC: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static UPPERCASE: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static LOWERCASE: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static WHITE_SPACE: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static MATH: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static DASH: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static DIACRITIC: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static EMOJI: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static EMOJI_PRESENTATION: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static EMOJI_MODIFIER: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+static EMOJI_MODIFIER_BASE: OnceLock<CodePointSetDataBorrowed<'static>> = OnceLock::new();
+
+// Helper functions to get or initialize the static data
+/// Get the lazily-initialized Unicode General Category map.
+///
+/// Returns a borrowed ICU4X code point map usable for lookups.
+fn get_general_category() -> &'static CodePointMapDataBorrowed<'static, GeneralCategory> {
+    GENERAL_CATEGORY.get_or_init(|| CodePointMapDataBorrowed::<GeneralCategory>::new())
+}
+
+/// Get the lazily-initialized Script map.
+///
+/// Returns a borrowed ICU4X code point map usable for script lookups and names.
+fn get_script() -> &'static CodePointMapDataBorrowed<'static, Script> {
+    SCRIPT.get_or_init(|| CodePointMapDataBorrowed::<Script>::new())
+}
+
+/// Get the lazily-initialized Bidirectional Class map.
+fn get_bidi_class() -> &'static CodePointMapDataBorrowed<'static, BidiClass> {
+    BIDI_CLASS.get_or_init(|| CodePointMapDataBorrowed::<BidiClass>::new())
+}
+
+/// Get the lazily-initialized East Asian Width map.
+fn get_east_asian_width() -> &'static CodePointMapDataBorrowed<'static, EastAsianWidth> {
+    EAST_ASIAN_WIDTH.get_or_init(|| CodePointMapDataBorrowed::<EastAsianWidth>::new())
+}
+
+/// Get the lazily-initialized Line Break map.
+fn get_line_break() -> &'static CodePointMapDataBorrowed<'static, LineBreak> {
+    LINE_BREAK.get_or_init(|| CodePointMapDataBorrowed::<LineBreak>::new())
+}
+
+/// Get the lazily-initialized Word Break map.
+fn get_word_break() -> &'static CodePointMapDataBorrowed<'static, WordBreak> {
+    WORD_BREAK.get_or_init(|| CodePointMapDataBorrowed::<WordBreak>::new())
+}
+
+/// Get the lazily-initialized Sentence Break map.
+fn get_sentence_break() -> &'static CodePointMapDataBorrowed<'static, SentenceBreak> {
+    SENTENCE_BREAK.get_or_init(|| CodePointMapDataBorrowed::<SentenceBreak>::new())
+}
+
+/// Get the lazily-initialized Grapheme Cluster Break map.
+fn get_grapheme_break() -> &'static CodePointMapDataBorrowed<'static, GraphemeClusterBreak> {
+    GRAPHEME_BREAK.get_or_init(|| CodePointMapDataBorrowed::<GraphemeClusterBreak>::new())
+}
+
+/// Get the lazily-initialized Hangul Syllable Type map.
+fn get_hangul() -> &'static CodePointMapDataBorrowed<'static, HangulSyllableType> {
+    HANGUL.get_or_init(|| CodePointMapDataBorrowed::<HangulSyllableType>::new())
+}
+
+/// Get the lazily-initialized Joining Type map.
+fn get_joining() -> &'static CodePointMapDataBorrowed<'static, JoiningType> {
+    JOINING.get_or_init(|| CodePointMapDataBorrowed::<JoiningType>::new())
+}
+
+/// Get the lazily-initialized Alphabetic code point set.
+fn get_alphabetic() -> &'static CodePointSetDataBorrowed<'static> {
+    ALPHABETIC.get_or_init(|| CodePointSetDataBorrowed::new::<Alphabetic>())
+}
+
+/// Get the lazily-initialized Uppercase code point set.
+fn get_uppercase() -> &'static CodePointSetDataBorrowed<'static> {
+    UPPERCASE.get_or_init(|| CodePointSetDataBorrowed::new::<Uppercase>())
+}
+
+/// Get the lazily-initialized Lowercase code point set.
+fn get_lowercase() -> &'static CodePointSetDataBorrowed<'static> {
+    LOWERCASE.get_or_init(|| CodePointSetDataBorrowed::new::<Lowercase>())
+}
+
+/// Get the lazily-initialized White Space code point set.
+fn get_white_space() -> &'static CodePointSetDataBorrowed<'static> {
+    WHITE_SPACE.get_or_init(|| CodePointSetDataBorrowed::new::<WhiteSpace>())
+}
+
+/// Get the lazily-initialized Math code point set.
+fn get_math() -> &'static CodePointSetDataBorrowed<'static> {
+    MATH.get_or_init(|| CodePointSetDataBorrowed::new::<Math>())
+}
+
+/// Get the lazily-initialized Dash code point set.
+fn get_dash() -> &'static CodePointSetDataBorrowed<'static> {
+    DASH.get_or_init(|| CodePointSetDataBorrowed::new::<Dash>())
+}
+
+/// Get the lazily-initialized Diacritic code point set.
+fn get_diacritic() -> &'static CodePointSetDataBorrowed<'static> {
+    DIACRITIC.get_or_init(|| CodePointSetDataBorrowed::new::<Diacritic>())
+}
+
+/// Get the lazily-initialized Emoji code point set.
+fn get_emoji() -> &'static CodePointSetDataBorrowed<'static> {
+    EMOJI.get_or_init(|| CodePointSetDataBorrowed::new::<Emoji>())
+}
+
+/// Get the lazily-initialized Emoji Presentation code point set.
+fn get_emoji_presentation() -> &'static CodePointSetDataBorrowed<'static> {
+    EMOJI_PRESENTATION.get_or_init(|| CodePointSetDataBorrowed::new::<EmojiPresentation>())
+}
+
+/// Get the lazily-initialized Emoji Modifier code point set.
+fn get_emoji_modifier() -> &'static CodePointSetDataBorrowed<'static> {
+    EMOJI_MODIFIER.get_or_init(|| CodePointSetDataBorrowed::new::<EmojiModifier>())
+}
+
+/// Get the lazily-initialized Emoji Modifier Base code point set.
+fn get_emoji_modifier_base() -> &'static CodePointSetDataBorrowed<'static> {
+    EMOJI_MODIFIER_BASE.get_or_init(|| CodePointSetDataBorrowed::new::<EmojiModifierBase>())
+}
 
 #[derive(Serialize)]
 pub struct UnicodeCharProperties {
@@ -68,9 +207,6 @@ pub struct UnicodeCharProperties {
     pub is_emoji_modifier_base: Option<bool>,
 }
 
-/// Utilities for Scripts
-use std::collections::BTreeSet;
-
 #[derive(Serialize)]
 pub struct ScriptCharactersResult {
     pub script_long_name: String,
@@ -79,101 +215,106 @@ pub struct ScriptCharactersResult {
     pub characters: Vec<UnicodeCharProperties>,
 }
 
+macro_rules! to_string_opt {
+    ($val:expr) => {
+        Some(format!("{:?}", $val))
+    };
+}
+
+fn safe_name(c: char) -> String {
+    name(c).map(|n| n.to_string()).unwrap_or_else(|| "UNKNOWN".to_string())
+}
+
+/// Check if a character matches an optional search string.
+///
+/// The search is performed across several derived fields (char, code point,
+/// Unicode value, general category, script names, and character name).
+/// Returns true if `search` is None or if any field contains the query.
+fn matches_search(c: char, search: &Option<String>) -> bool {
+    if let Some(ref s) = search {
+        let s = s.to_lowercase();
+        let char_str = c.to_string().to_lowercase();
+        let code_point_str = (c as u32).to_string();
+        let unicode_value = format!("U+{:04X}", c as u32).to_lowercase();
+        let general_category = format!("{:?}", get_general_category().get(c)).to_lowercase();
+        let script_long = get_script().get(c).long_name().to_lowercase();
+        let script_short = get_script().get(c).short_name().to_lowercase();
+        let name_str = safe_name(c).to_lowercase();
+
+        char_str.contains(&s)
+            || code_point_str.contains(&s)
+            || unicode_value.contains(&s)
+            || general_category.contains(&s)
+            || script_long.contains(&s)
+            || script_short.contains(&s)
+            || name_str.contains(&s)
+    } else {
+        true
+    }
+}
+
+/// Convert a character into a serializable bundle of Unicode properties.
+///
+/// Uses ICU4X data to populate map/set-derived fields and auxiliary helpers
+/// for block and plane names.
+fn map_to_properties(c: char) -> UnicodeCharProperties {
+    UnicodeCharProperties {
+        character: c.to_string(),
+        code_point: c as u32,
+        name: Some(safe_name(c)),
+        unicode_value: Some(format!("U+{:04X}", c as u32)),
+        block: Some(find_unicode_block(c).map(|b| b.name()).unwrap_or("UNKNOWN").to_string()),
+        plane: Some(get_plane_name(c as u32).to_string()),
+        general_category: to_string_opt!(get_general_category().get(c)),
+        script: Some(get_script().get(c).long_name().to_string()),
+        bidi_class: to_string_opt!(get_bidi_class().get(c)),
+        east_asian_width: to_string_opt!(get_east_asian_width().get(c)),
+        line_break: to_string_opt!(get_line_break().get(c)),
+        word_break: to_string_opt!(get_word_break().get(c)),
+        sentence_break: to_string_opt!(get_sentence_break().get(c)),
+        grapheme_cluster_break: to_string_opt!(get_grapheme_break().get(c)),
+        hangul_syllable_type: to_string_opt!(get_hangul().get(c)),
+        joining_type: to_string_opt!(get_joining().get(c)),
+        is_alphabetic: Some(get_alphabetic().contains(c)),
+        is_uppercase: Some(get_uppercase().contains(c)),
+        is_lowercase: Some(get_lowercase().contains(c)),
+        is_white_space: Some(get_white_space().contains(c)),
+        is_math: Some(get_math().contains(c)),
+        is_dash: Some(get_dash().contains(c)),
+        is_diacritic: Some(get_diacritic().contains(c)),
+        is_emoji: Some(get_emoji().contains(c)),
+        is_emoji_presentation: Some(get_emoji_presentation().contains(c)),
+        is_emoji_modifier: Some(get_emoji_modifier().contains(c)),
+        is_emoji_modifier_base: Some(get_emoji_modifier_base().contains(c)),
+    }
+}
+
 #[flutter_rust_bridge::frb(sync)]
+/// Return a page of Unicode character properties filtered by an optional query.
+///
+/// - `search`: optional lowercased substring to match against multiple fields.
+/// - `offset`: number of matching characters to skip (start index, inclusive).
+/// - `limit`: exclusive end index; the function returns at most `limit - offset` items.
 pub fn get_unicode_char_properties(
     search: Option<String>,
     offset: usize,
     limit: usize,
 ) -> Vec<UnicodeCharProperties> {
-    let general_category_map = CodePointMapData::<GeneralCategory>::new();
-    let script_map = CodePointMapData::<Script>::new();
-    let bidi_class_map = CodePointMapData::<BidiClass>::new();
-    let east_asian_width_map = CodePointMapData::<EastAsianWidth>::new();
-    let line_break_map = CodePointMapData::<LineBreak>::new();
-    let word_break_map = CodePointMapData::<WordBreak>::new();
-    let sentence_break_map = CodePointMapData::<SentenceBreak>::new();
-    let grapheme_cluster_break_map = CodePointMapData::<GraphemeClusterBreak>::new();
-    let hangul_syllable_type_map = CodePointMapData::<HangulSyllableType>::new();
-    let joining_type_map = CodePointMapData::<JoiningType>::new();
-    let alphabetic = CodePointSetData::new::<Alphabetic>();
-    let uppercase = CodePointSetData::new::<Uppercase>();
-    let lowercase = CodePointSetData::new::<Lowercase>();
-    let white_space = CodePointSetData::new::<WhiteSpace>();
-    let math = CodePointSetData::new::<Math>();
-    let dash = CodePointSetData::new::<Dash>();
-    let diacritic = CodePointSetData::new::<Diacritic>();
-    let emoji = CodePointSetData::new::<Emoji>();
-    let emoji_presentation = CodePointSetData::new::<EmojiPresentation>();
-    let emoji_modifier = CodePointSetData::new::<EmojiModifier>();
-    let emoji_modifier_base = CodePointSetData::new::<EmojiModifierBase>();
-
-    let results: Vec<char> = CodePointInversionList::all()
+    let page_len = limit.saturating_sub(offset);
+    CodePointInversionList::all()
         .iter_chars()
-        .filter(|&c| {
-            if let Some(ref s) = search {
-                let s = s.to_lowercase();
-                let char_str = c.to_string().to_lowercase();
-                let code_point_str = (c as u32).to_string();
-                let unicode_value = format!("U+{:04X}", c as u32).to_lowercase();
-                let general_category = format!("{:?}", general_category_map.get(c)).to_lowercase();
-                let script_long = script_map.get(c).long_name().to_lowercase();
-                let script_short = script_map.get(c).short_name().to_lowercase();
-                let name_str = name(c)
-                    .map(|n| n.to_string().to_lowercase())
-                    .unwrap_or_else(|| "unknown".to_string());
-
-                char_str.contains(&s)
-                    || code_point_str.contains(&s)
-                    || unicode_value.contains(&s)
-                    || general_category.contains(&s)
-                    || script_long.contains(&s)
-                    || script_short.contains(&s)
-                    || name_str.contains(&s)
-            } else {
-                true
-            }
-        })
+        .filter(|&c| matches_search(c, &search))
         .skip(offset)
-        .take(limit)
-        .collect();
-
-    results
-        .into_iter()
-        .map(|c| UnicodeCharProperties {
-            character: c.to_string(),
-            code_point: c as u32,
-            name: Some(name(c).map_or("UNKNOWN".to_string(), |n| n.to_string())),
-            unicode_value: Some(format!("U+{:04X}", c as u32)),
-            block: Some(find_unicode_block(c).map(|b| b.name()).unwrap_or("UNKNOWN").to_string()),
-            plane: Some(get_plane_name(c as u32).to_string()),
-            general_category: Some(format!("{:?}", general_category_map.get(c))),
-            script: Some(script_map.get(c).long_name().to_string()),
-            bidi_class: Some(format!("{:?}", bidi_class_map.get(c))),
-            east_asian_width: Some(format!("{:?}", east_asian_width_map.get(c))),
-            line_break: Some(format!("{:?}", line_break_map.get(c))),
-            word_break: Some(format!("{:?}", word_break_map.get(c))),
-            sentence_break: Some(format!("{:?}", sentence_break_map.get(c))),
-            grapheme_cluster_break: Some(format!("{:?}", grapheme_cluster_break_map.get(c))),
-            hangul_syllable_type: Some(format!("{:?}", hangul_syllable_type_map.get(c))),
-            joining_type: Some(format!("{:?}", joining_type_map.get(c))),
-            is_alphabetic: Some(alphabetic.contains(c)),
-            is_uppercase: Some(uppercase.contains(c)),
-            is_lowercase: Some(lowercase.contains(c)),
-            is_white_space: Some(white_space.contains(c)),
-            is_math: Some(math.contains(c)),
-            is_dash: Some(dash.contains(c)),
-            is_diacritic: Some(diacritic.contains(c)),
-            is_emoji: Some(emoji.contains(c)),
-            is_emoji_presentation: Some(emoji_presentation.contains(c)),
-            is_emoji_modifier: Some(emoji_modifier.contains(c)),
-            is_emoji_modifier_base: Some(emoji_modifier_base.contains(c)),
-        }).collect()
+        .take(page_len)
+        .map(map_to_properties)
+        .collect()
 }
 
 /// Return the list of all script names (long names) present across Unicode scalar values.
 #[flutter_rust_bridge::frb(sync)]
+/// Return the sorted list of all script long names present in Unicode.
 pub fn get_all_scripts() -> Vec<String> {
-    let script_map = CodePointMapData::<Script>::new();
+    let script_map: CodePointMapDataBorrowed<'static, Script> = CodePointMapDataBorrowed::<Script>::new();
     let mut names: BTreeSet<String> = BTreeSet::new();
 
     for c in CodePointInversionList::all().iter_chars() {
@@ -182,6 +323,15 @@ pub fn get_all_scripts() -> Vec<String> {
     }
 
     names.into_iter().collect()
+}
+
+#[flutter_rust_bridge::frb(sync)]
+/// Return the script long name for a single character.
+///
+/// Panics only if ICU4X script data is unavailable (should not happen).
+pub fn get_script_for_char(ch: char) -> String {
+    let script_map: CodePointMapDataBorrowed<'static, Script> = CodePointMapDataBorrowed::<Script>::new();
+    script_map.get(ch).long_name().to_string()
 }
 
 /// Get the name of the plane for a given code point.
@@ -219,10 +369,6 @@ fn get_plane_name(code_point: u32) -> &'static str {
     }
 }
 
-
-use icu_casemap::CaseMapper;
-use icu_locale_core::LanguageIdentifier;
-
 #[derive(Serialize)]
 pub struct CaseMappingResult {
     pub original: String,
@@ -231,6 +377,10 @@ pub struct CaseMappingResult {
 }
 
 #[flutter_rust_bridge::frb(sync)]
+/// Return case mapping information (upper/lower) for a single-character string.
+///
+/// If the input is not exactly one Unicode scalar value, returns `has_mapping = false`
+/// with the original text unchanged.
 pub fn get_character_case_mapping(character: String) -> CaseMappingResult {
     let casemapper = CaseMapper::new();
     let langid: LanguageIdentifier = "und".parse().expect("Failed to parse 'und' as a language identifier");
