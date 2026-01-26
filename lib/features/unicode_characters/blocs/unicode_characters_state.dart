@@ -40,7 +40,7 @@ part of 'unicode_characters_bloc.dart';
 /// )
 /// ```
 @freezed
-class UnicodeCharPropertiesState with _$UnicodeCharPropertiesState {
+abstract class UnicodeCharPropertiesState with _$UnicodeCharPropertiesState {
   /// Initial state for Unicode characters.
   ///
   /// This state represents the app startup condition where no characters

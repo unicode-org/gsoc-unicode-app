@@ -28,7 +28,7 @@ part of 'unicode_characters_bloc.dart';
 /// bloc.add(const UnicodeCharPropertiesEvent.getCharacters(page: 2));
 /// ```
 @freezed
-class UnicodeCharPropertiesEvent with _$UnicodeCharPropertiesEvent {
+abstract class UnicodeCharPropertiesEvent with _$UnicodeCharPropertiesEvent {
   /// Get characters event for fetching Unicode characters.
   ///
   /// This event triggers the fetching of Unicode characters from the

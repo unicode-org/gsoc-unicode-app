@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,34 +9,191 @@ part of 'saved_characters_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SavedCharactersState {
-  List<UnicodeCharProperties> get characters =>
-      throw _privateConstructorUsedError;
+  List<UnicodeCharProperties> get characters;
+
+  /// Create a copy of SavedCharactersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SavedCharactersStateCopyWith<SavedCharactersState> get copyWith =>
+      _$SavedCharactersStateCopyWithImpl<SavedCharactersState>(
+          this as SavedCharactersState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SavedCharactersState &&
+            const DeepCollectionEquality()
+                .equals(other.characters, characters));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(characters));
+
+  @override
+  String toString() {
+    return 'SavedCharactersState(characters: $characters)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SavedCharactersStateCopyWith<$Res> {
+  factory $SavedCharactersStateCopyWith(SavedCharactersState value,
+          $Res Function(SavedCharactersState) _then) =
+      _$SavedCharactersStateCopyWithImpl;
+  @useResult
+  $Res call({List<UnicodeCharProperties> characters});
+}
+
+/// @nodoc
+class _$SavedCharactersStateCopyWithImpl<$Res>
+    implements $SavedCharactersStateCopyWith<$Res> {
+  _$SavedCharactersStateCopyWithImpl(this._self, this._then);
+
+  final SavedCharactersState _self;
+  final $Res Function(SavedCharactersState) _then;
+
+  /// Create a copy of SavedCharactersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? characters = null,
+  }) {
+    return _then(_self.copyWith(
+      characters: null == characters
+          ? _self.characters
+          : characters // ignore: cast_nullable_to_non_nullable
+              as List<UnicodeCharProperties>,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [SavedCharactersState].
+extension SavedCharactersStatePatterns on SavedCharactersState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharProperties> characters) initial,
-    required TResult Function(List<UnicodeCharProperties> characters) loading,
-    required TResult Function(List<UnicodeCharProperties> characters) loaded,
-    required TResult Function(
-            String? error, List<UnicodeCharProperties> characters)
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that);
+      case _Loading() when loading != null:
+        return loading(_that);
+      case _Loaded() when loaded != null:
+        return loaded(_that);
+      case _Error() when error != null:
+        return error(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharProperties> characters)? initial,
-    TResult? Function(List<UnicodeCharProperties> characters)? loading,
-    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return initial(_that);
+      case _Loading():
+        return loading(_that);
+      case _Loaded():
+        return loaded(_that);
+      case _Error():
+        return error(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that);
+      case _Loading() when loading != null:
+        return loading(_that);
+      case _Loaded() when loaded != null:
+        return loaded(_that);
+      case _Error() when error != null:
+        return error(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<UnicodeCharProperties> characters)? initial,
@@ -45,116 +202,99 @@ mixin _$SavedCharactersState {
     TResult Function(String? error, List<UnicodeCharProperties> characters)?
         error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SavedCharactersStateCopyWith<SavedCharactersState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SavedCharactersStateCopyWith<$Res> {
-  factory $SavedCharactersStateCopyWith(SavedCharactersState value,
-          $Res Function(SavedCharactersState) then) =
-      _$SavedCharactersStateCopyWithImpl<$Res, SavedCharactersState>;
-  @useResult
-  $Res call({List<UnicodeCharProperties> characters});
-}
-
-/// @nodoc
-class _$SavedCharactersStateCopyWithImpl<$Res,
-        $Val extends SavedCharactersState>
-    implements $SavedCharactersStateCopyWith<$Res> {
-  _$SavedCharactersStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? characters = null,
   }) {
-    return _then(_value.copyWith(
-      characters: null == characters
-          ? _value.characters
-          : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharProperties>,
-    ) as $Val);
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that.characters);
+      case _Loading() when loading != null:
+        return loading(_that.characters);
+      case _Loaded() when loaded != null:
+        return loaded(_that.characters);
+      case _Error() when error != null:
+        return error(_that.error, _that.characters);
+      case _:
+        return orElse();
+    }
   }
-}
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res>
-    implements $SavedCharactersStateCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<UnicodeCharProperties> characters});
-}
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SavedCharactersStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? characters = null,
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<UnicodeCharProperties> characters) initial,
+    required TResult Function(List<UnicodeCharProperties> characters) loading,
+    required TResult Function(List<UnicodeCharProperties> characters) loaded,
+    required TResult Function(
+            String? error, List<UnicodeCharProperties> characters)
+        error,
   }) {
-    return _then(_$InitialImpl(
-      characters: null == characters
-          ? _value._characters
-          : characters // ignore: cast_nullable_to_non_nullable
-              as List<UnicodeCharProperties>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return initial(_that.characters);
+      case _Loading():
+        return loading(_that.characters);
+      case _Loaded():
+        return loaded(_that.characters);
+      case _Error():
+        return error(_that.error, _that.characters);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<UnicodeCharProperties> characters)? initial,
+    TResult? Function(List<UnicodeCharProperties> characters)? loading,
+    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
+    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
+        error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that.characters);
+      case _Loading() when loading != null:
+        return loading(_that.characters);
+      case _Loaded() when loaded != null:
+        return loaded(_that.characters);
+      case _Error() when error != null:
+        return error(_that.error, _that.characters);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl(
+class _Initial implements SavedCharactersState {
+  const _Initial(
       {final List<UnicodeCharProperties> characters =
           const <UnicodeCharProperties>[]})
       : _characters = characters;
@@ -167,156 +307,61 @@ class _$InitialImpl implements _Initial {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
   }
+
+  /// Create a copy of SavedCharactersState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InitialCopyWith<_Initial> get copyWith =>
+      __$InitialCopyWithImpl<_Initial>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Initial &&
+            const DeepCollectionEquality()
+                .equals(other._characters, _characters));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_characters));
 
   @override
   String toString() {
     return 'SavedCharactersState.initial(characters: $characters)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitialImpl &&
-            const DeepCollectionEquality()
-                .equals(other._characters, _characters));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_characters));
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharProperties> characters) initial,
-    required TResult Function(List<UnicodeCharProperties> characters) loading,
-    required TResult Function(List<UnicodeCharProperties> characters) loaded,
-    required TResult Function(
-            String? error, List<UnicodeCharProperties> characters)
-        error,
-  }) {
-    return initial(characters);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharProperties> characters)? initial,
-    TResult? Function(List<UnicodeCharProperties> characters)? loading,
-    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-  }) {
-    return initial?.call(characters);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharProperties> characters)? initial,
-    TResult Function(List<UnicodeCharProperties> characters)? loading,
-    TResult Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(characters);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements SavedCharactersState {
-  const factory _Initial({final List<UnicodeCharProperties> characters}) =
-      _$InitialImpl;
-
-  @override
-  List<UnicodeCharProperties> get characters;
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res>
+abstract mixin class _$InitialCopyWith<$Res>
     implements $SavedCharactersStateCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) _then) =
+      __$InitialCopyWithImpl;
   @override
   @useResult
   $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SavedCharactersStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
+class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(this._self, this._then);
+
+  final _Initial _self;
+  final $Res Function(_Initial) _then;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? characters = null,
   }) {
-    return _then(_$LoadingImpl(
+    return _then(_Initial(
       characters: null == characters
-          ? _value._characters
+          ? _self._characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<UnicodeCharProperties>,
     ));
@@ -325,8 +370,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl(
+class _Loading implements SavedCharactersState {
+  const _Loading(
       {final List<UnicodeCharProperties> characters =
           const <UnicodeCharProperties>[]})
       : _characters = characters;
@@ -340,16 +385,19 @@ class _$LoadingImpl implements _Loading {
     return EqualUnmodifiableListView(_characters);
   }
 
+  /// Create a copy of SavedCharactersState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SavedCharactersState.loading(characters: $characters)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LoadingCopyWith<_Loading> get copyWith =>
+      __$LoadingCopyWithImpl<_Loading>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadingImpl &&
+            other is _Loading &&
             const DeepCollectionEquality()
                 .equals(other._characters, _characters));
   }
@@ -358,137 +406,39 @@ class _$LoadingImpl implements _Loading {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_characters));
 
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
-      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharProperties> characters) initial,
-    required TResult Function(List<UnicodeCharProperties> characters) loading,
-    required TResult Function(List<UnicodeCharProperties> characters) loaded,
-    required TResult Function(
-            String? error, List<UnicodeCharProperties> characters)
-        error,
-  }) {
-    return loading(characters);
+  String toString() {
+    return 'SavedCharactersState.loading(characters: $characters)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharProperties> characters)? initial,
-    TResult? Function(List<UnicodeCharProperties> characters)? loading,
-    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-  }) {
-    return loading?.call(characters);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharProperties> characters)? initial,
-    TResult Function(List<UnicodeCharProperties> characters)? loading,
-    TResult Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(characters);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements SavedCharactersState {
-  const factory _Loading({final List<UnicodeCharProperties> characters}) =
-      _$LoadingImpl;
-
-  @override
-  List<UnicodeCharProperties> get characters;
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res>
+abstract mixin class _$LoadingCopyWith<$Res>
     implements $SavedCharactersStateCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) _then) =
+      __$LoadingCopyWithImpl;
   @override
   @useResult
   $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$SavedCharactersStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
+class __$LoadingCopyWithImpl<$Res> implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(this._self, this._then);
+
+  final _Loading _self;
+  final $Res Function(_Loading) _then;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? characters = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_Loading(
       characters: null == characters
-          ? _value._characters
+          ? _self._characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<UnicodeCharProperties>,
     ));
@@ -497,8 +447,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<UnicodeCharProperties> characters})
+class _Loaded implements SavedCharactersState {
+  const _Loaded({required final List<UnicodeCharProperties> characters})
       : _characters = characters;
 
   final List<UnicodeCharProperties> _characters;
@@ -509,16 +459,19 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_characters);
   }
 
+  /// Create a copy of SavedCharactersState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SavedCharactersState.loaded(characters: $characters)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LoadedCopyWith<_Loaded> get copyWith =>
+      __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _Loaded &&
             const DeepCollectionEquality()
                 .equals(other._characters, _characters));
   }
@@ -527,142 +480,39 @@ class _$LoadedImpl implements _Loaded {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_characters));
 
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharProperties> characters) initial,
-    required TResult Function(List<UnicodeCharProperties> characters) loading,
-    required TResult Function(List<UnicodeCharProperties> characters) loaded,
-    required TResult Function(
-            String? error, List<UnicodeCharProperties> characters)
-        error,
-  }) {
-    return loaded(characters);
+  String toString() {
+    return 'SavedCharactersState.loaded(characters: $characters)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharProperties> characters)? initial,
-    TResult? Function(List<UnicodeCharProperties> characters)? loading,
-    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-  }) {
-    return loaded?.call(characters);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharProperties> characters)? initial,
-    TResult Function(List<UnicodeCharProperties> characters)? loading,
-    TResult Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(characters);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loaded implements SavedCharactersState {
-  const factory _Loaded(
-      {required final List<UnicodeCharProperties> characters}) = _$LoadedImpl;
-
-  @override
-  List<UnicodeCharProperties> get characters;
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res>
+abstract mixin class _$LoadedCopyWith<$Res>
     implements $SavedCharactersStateCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) =
+      __$LoadedCopyWithImpl;
   @override
   @useResult
-  $Res call({String? error, List<UnicodeCharProperties> characters});
+  $Res call({List<UnicodeCharProperties> characters});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$SavedCharactersStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
+class __$LoadedCopyWithImpl<$Res> implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
 
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
-    Object? error = freezed,
     Object? characters = null,
   }) {
-    return _then(_$ErrorImpl(
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_Loaded(
       characters: null == characters
-          ? _value._characters
+          ? _self._characters
           : characters // ignore: cast_nullable_to_non_nullable
               as List<UnicodeCharProperties>,
     ));
@@ -671,14 +521,13 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(
+class _Error implements SavedCharactersState {
+  const _Error(
       {this.error,
       final List<UnicodeCharProperties> characters =
           const <UnicodeCharProperties>[]})
       : _characters = characters;
 
-  @override
   final String? error;
   final List<UnicodeCharProperties> _characters;
   @override
@@ -689,16 +538,19 @@ class _$ErrorImpl implements _Error {
     return EqualUnmodifiableListView(_characters);
   }
 
+  /// Create a copy of SavedCharactersState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SavedCharactersState.error(error: $error, characters: $characters)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _Error &&
             (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
                 .equals(other._characters, _characters));
@@ -708,106 +560,48 @@ class _$ErrorImpl implements _Error {
   int get hashCode => Object.hash(
       runtimeType, error, const DeepCollectionEquality().hash(_characters));
 
+  @override
+  String toString() {
+    return 'SavedCharactersState.error(error: $error, characters: $characters)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorCopyWith<$Res>
+    implements $SavedCharactersStateCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
+      __$ErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? error, List<UnicodeCharProperties> characters});
+}
+
+/// @nodoc
+class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(this._self, this._then);
+
+  final _Error _self;
+  final $Res Function(_Error) _then;
+
   /// Create a copy of SavedCharactersState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<UnicodeCharProperties> characters) initial,
-    required TResult Function(List<UnicodeCharProperties> characters) loading,
-    required TResult Function(List<UnicodeCharProperties> characters) loaded,
-    required TResult Function(
-            String? error, List<UnicodeCharProperties> characters)
-        error,
+  $Res call({
+    Object? error = freezed,
+    Object? characters = null,
   }) {
-    return error(this.error, characters);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<UnicodeCharProperties> characters)? initial,
-    TResult? Function(List<UnicodeCharProperties> characters)? loading,
-    TResult? Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult? Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-  }) {
-    return error?.call(this.error, characters);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<UnicodeCharProperties> characters)? initial,
-    TResult Function(List<UnicodeCharProperties> characters)? loading,
-    TResult Function(List<UnicodeCharProperties> characters)? loaded,
-    TResult Function(String? error, List<UnicodeCharProperties> characters)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error, characters);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
+    return _then(_Error(
+      error: freezed == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+      characters: null == characters
+          ? _self._characters
+          : characters // ignore: cast_nullable_to_non_nullable
+              as List<UnicodeCharProperties>,
+    ));
   }
 }
 
-abstract class _Error implements SavedCharactersState {
-  const factory _Error(
-      {final String? error,
-      final List<UnicodeCharProperties> characters}) = _$ErrorImpl;
-
-  String? get error;
-  @override
-  List<UnicodeCharProperties> get characters;
-
-  /// Create a copy of SavedCharactersState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

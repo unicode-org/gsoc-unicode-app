@@ -6,7 +6,7 @@ part of 'all_recent_characters_cubit.dart';
 /// characters.
 /// It is used to store the characters and the error message.
 @freezed
-class AllRecentCharactersState with _$AllRecentCharactersState {
+abstract class AllRecentCharactersState with _$AllRecentCharactersState {
   /// Initial state for all recently viewed characters.
   const factory AllRecentCharactersState.initial({
     @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,

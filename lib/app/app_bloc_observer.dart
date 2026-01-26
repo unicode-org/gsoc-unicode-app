@@ -125,7 +125,7 @@ class AppBlocObserver extends BlocObserver {
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
     // Blue text for state changes (34m = blue foreground)
-    debugPrint('onChange([34m${bloc.runtimeType}[0m, $change)');
+    // debugPrint('onChange([34m${bloc.runtimeType}[0m, $change)');
   }
 
   /// Called whenever an error is thrown in any BLoC.

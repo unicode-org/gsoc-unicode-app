@@ -5,7 +5,7 @@ part of 'saved_characters_cubit.dart';
 /// This state is used to manage the state of the saved characters.
 /// It is used to store the characters and the error message.
 @freezed
-class SavedCharactersState with _$SavedCharactersState {
+abstract class SavedCharactersState with _$SavedCharactersState {
   /// Initial state for saved characters.
   const factory SavedCharactersState.initial({
     @Default(<UnicodeCharProperties>[]) List<UnicodeCharProperties> characters,
