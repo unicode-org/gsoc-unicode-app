@@ -79,7 +79,8 @@
 //         () async {
 //       final existingCharacter = createTestCharacter(character: 'B');
 //       final existingList = [existingCharacter];
-//       final encoded = jsonEncode(existingList.map((c) => c.toJson()).toList());
+//       final encoded = 
+//       jsonEncode(existingList.map((c) => c.toJson()).toList());
 
 //       when(mockBox.get(savedCharactersKey)).thenReturn(encoded);
 //       when(mockBox.put(any, any)).thenAnswer((_) async {});
@@ -117,7 +118,8 @@
 //       verify(mockBox.get(recentCharacterKey)).called(1);
 //     });
 
-//     test('getRecentlyViewedCharacters returns empty list when no data exists',
+//     test('getRecentlyViewedCharacters returns empty list 
+//.    when no data exists',
 //         () {
 //       when(mockBox.get(recentCharacterKey)).thenReturn(null);
 
@@ -138,7 +140,8 @@
 
 //     test('removeCharacter removes character from saved list', () async {
 //       final existingList = [character];
-//       final encoded = jsonEncode(existingList.map((c) => c.toJson()).toList());
+//       final encoded = 
+//.      jsonEncode(existingList.map((c) => c.toJson()).toList());
 
 //       when(mockBox.get(savedCharactersKey)).thenReturn(encoded);
 //       when(mockBox.put(any, any)).thenAnswer((_) async {});
@@ -155,9 +158,11 @@
 //       expect(updatedList, isEmpty);
 //     });
 
-//     test('removeCharacter handles character not in list gracefully', () async {
+//     test('removeCharacter handles character not in list gracefully', () 
+//     async {
 //       final existingList = [character];
-//       final encoded = jsonEncode(existingList.map((c) => c.toJson()).toList());
+//       final encoded = 
+//       jsonEncode(existingList.map((c) => c.toJson()).toList());
 
 //       when(mockBox.get(savedCharactersKey)).thenReturn(encoded);
 //       when(mockBox.put(any, any)).thenAnswer((_) async {});

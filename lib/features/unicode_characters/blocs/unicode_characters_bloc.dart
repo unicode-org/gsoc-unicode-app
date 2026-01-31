@@ -101,7 +101,7 @@ class UnicodeCharPropertiesBloc
   UnicodeCharPropertiesBloc() : super(const _Initial()) {
     on<_GetCharacters>(
       _onGetCharacters,
-      transformer: debounceTransformer(const Duration(milliseconds: 1000)),
+      transformer: debounceTransformer(const Duration(milliseconds: 500)),
     );
   }
 

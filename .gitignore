@@ -46,3 +46,6 @@ app.*.map.json
 # FVM Version Cache
 .fvm/
 .fvmrc
+
+# VS Code DevTools settings
+devtools_options.yaml

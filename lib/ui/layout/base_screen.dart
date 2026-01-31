@@ -6,8 +6,10 @@ library;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
+import 'package:gsoc_unicode_app/features/features.dart';
 import 'package:gsoc_unicode_app/ui/ui.dart';
 import 'package:gsoc_unicode_app/utils/localization_extensions.dart';
 
@@ -15,44 +17,39 @@ import 'package:gsoc_unicode_app/utils/localization_extensions.dart';
 ///
 /// Accepts an optional [index] to set the initial tab.
 @RoutePage()
-class BaseScreen extends StatelessWidget {
-  /// Creates a [BaseScreen] with an optional initial tab index.
-  const BaseScreen({super.key, this.index});
 
-  /// The initial tab index for the bottom navigation bar.
-  final int? index;
+/// Creates a [BaseScreen] with an optional initial tab index.
 
-  @override
-  Widget build(BuildContext context) {
-    return _BaseScreen(index: index);
-  }
-}
+/// The initial tab index for the bottom navigation bar.
 
-/// Internal stateful widget for managing navigation and tab switching.
-class _BaseScreen extends StatefulHookWidget {
-  /// Creates an internal [_BaseScreen] with the given [index].
-  const _BaseScreen({required this.index});
+/// Internal Hook widget for managing navigation and tab switching.
+class BaseScreen extends HookWidget {
+  /// Creates a [BaseScreen] with the given [index].
+  const BaseScreen({super.key, @PathParam('index') this.index});
 
   /// The initial tab index.
   final int? index;
 
   @override
-  State<_BaseScreen> createState() => __BaseScreenState();
-}
-
-/// Internal state class for managing the base screen navigation and UI.
-class __BaseScreenState extends State<_BaseScreen> {
-  /// Builds the widget tree for the base screen with navigation.
-  @override
   Widget build(BuildContext context) {
     final locale = context.appLocalizations;
-    final currentIndex = useState(widget.index ?? 0);
+    final currentIndex = useState(index ?? 0);
     final screens = <Widget>[
       const HomeScreen(),
       const UnicodeExplorerScreen(),
       const MultilingualTesterScreen(),
       const SavedScreen(),
     ];
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // Initialize the current tab index
+        context
+            .read<HomeScrollCubit>()
+            .updateCurrentTabIndex(currentIndex.value);
+      });
+      return null;
+    }, [currentIndex.value]);
 
     return SafeAreaWrapper(
       child: ValueListenableBuilder<int>(
@@ -78,6 +75,9 @@ class __BaseScreenState extends State<_BaseScreen> {
               unselectedItemColor: Colors.grey,
               onTap: (value) {
                 currentIndex.value = value;
+                context
+                  .read<HomeScrollCubit>()
+                  .updateCurrentTabIndex(value);
               },
               items: [
                 BottomNavigationBarItem(

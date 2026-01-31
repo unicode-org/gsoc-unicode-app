@@ -30,7 +30,9 @@
 /// ```
 library;
 
+import 'package:dart_icu4x/dart_icu4x.dart';
 import 'package:flutter/material.dart';
+import 'package:gsoc_unicode_app/utils/utils.dart';
 
 /// Extension for accessing theme and padding values from [BuildContext].
 ///
@@ -108,4 +110,42 @@ extension ThemeContextExtension on BuildContext {
   /// )
   /// ```
   double get btmPadding => MediaQuery.of(this).viewPadding.bottom + 5;
+}
+
+/// Extensions for UnicodeCharProperties to add utility methods.
+///
+/// An extension on [UnicodeCharProperties] that provides additional
+/// functionality related to Unicode character properties.
+///
+/// This extension adds a method to determine if a character is a
+/// control character or unassigned.
+///
+/// The [isControl] getter checks if the character's Unicode value
+/// is present in the predefined list of control code points or if
+/// the character's name indicates that it is an unassigned code point.
+///
+/// Returns:
+/// - `true` if the character is a control character or unassigned,
+/// - `false` otherwise.
+extension UnicodeCharPropertiesExtension on UnicodeCharProperties {
+  /// Returns true if this character is a control character or unassigned.
+  bool get isControl {
+    final codePoint = unicodeValue != null
+        ? int.tryParse(unicodeValue!.replaceFirst('U+', ''), radix: 16)
+        : null;
+    return (codePoint != null && controlCodepoints.contains(codePoint) ||
+            noCharacterCodepoints.contains(codePoint)) ||
+        (name?.trim().contains('UNASSIGNED CODE POINT') ?? false);
+  }
+
+  /// Returns whether this character is in the Private Use Control category.
+  ///
+  /// Private Use Control characters are special control characters reserved for
+  /// private use and are not standardized by Unicode.
+  bool get privateUseControl {
+    final codePoint = unicodeValue != null
+        ? int.tryParse(unicodeValue!.replaceFirst('U+', ''), radix: 16)
+        : null;
+    return codePoint != null && privateUse.contains(codePoint);
+  }
 }

@@ -175,6 +175,12 @@ class MainApp extends StatelessWidget {
                 create: (context) => AllRecentCharactersCubit()
                   ..getAllRecentlyViewedCharacters(),
               ),
+
+              // Provider for home screen scroll position
+              BlocProvider(
+                lazy: false,
+                create: (context) => HomeScrollCubit(),
+              ),
             ],
             child: Unfocus(child: child!),
           ),

@@ -286,7 +286,7 @@ pub fn get_character_name_by_code_point(code_point: u32) -> String {
         _ if (0x100000..=0x10FFFF).contains(&code_point) => "PRIVATE USE CHARACTER".to_string(),
         
         // Unassigned code points
-        _ => format!("UNASSIGNED CODE POINT U+{:04X}", code_point),
+        _ => format!("UNASSIGNED CODE POINT"),
     }
 }
 

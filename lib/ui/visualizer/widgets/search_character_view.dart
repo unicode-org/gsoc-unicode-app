@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gsoc_unicode_app/shared/shared.dart';
 import 'package:gsoc_unicode_app/ui/ui.dart';
+import 'package:gsoc_unicode_app/utils/utils.dart';
 
 /// A widget that displays a list of characters.
 class CharacterView extends HookWidget {
@@ -24,20 +25,27 @@ class CharacterView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final selectedCharacter = useState<String?>(null);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: characters.map((char) {
+    return ListView.builder(
+      controller: controller,
+      shrinkWrap: true,
+      itemCount: characters.length,
+      itemBuilder: (context, index) {
+        final char = characters[index];
+        final isControl = char.isControl;
+        final displayableCharacter = isControl ? '' : char.character;
         final isSelected = selectedCharacter.value == char.character;
+
         return CharacterTile(
           onTap: () =>
               context.router.pushWidget(CharacterDetailScreen(character: char)),
-          character: char.character,
+          isControlCharacter: isControl,
+          character: displayableCharacter,
           script: char.script ?? '',
           isSelected: isSelected,
           characterName: char.name?.trim() ?? '',
           codePoint: char.unicodeValue ?? '',
         );
-      }).toList(),
+      },
     );
   }
 }

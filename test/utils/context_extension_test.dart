@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gsoc_unicode_app/utils/context_extension.dart';
+import 'package:gsoc_unicode_app/utils/extensions.dart';
 
 void main() {
   group('ThemeContextExtension', () {

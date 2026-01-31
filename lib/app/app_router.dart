@@ -69,29 +69,52 @@ part 'app_router.gr.dart';
 /// - Routes can include parameters and nested structures
 /// - The initial route is automatically set to the splash screen
 /// - All routes are accessible through the generated route classes
-@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+@AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
+
   @override
   List<AutoRoute> get routes => [
         // Initial splash screen - shown when app starts
         AutoRoute(path: '/', page: SplashRoute.page, initial: true),
 
-        // Base screen with bottom navigation - main app container
-        AutoRoute(path: '/base:index', page: BaseRoute.page),
-
-        // Home screen - tool selection interface
-        AutoRoute(path: '/home', page: HomeRoute.page),
-
-        // Unicode explorer - character browsing and search
-        AutoRoute(path: '/unicode-explorer', page: UnicodeExplorerRoute.page),
-
-        // Multilingual tester - font testing and comparison
-        AutoRoute(
-          path: '/multilingual-tester',
-          page: MultilingualTesterRoute.page,
+        CustomRoute<dynamic>(
+          // Base screen with bottom navigation - main app container
+          path: '/base:index',
+          page: BaseRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          barrierColor: Colors.transparent,
+          children: [
+            // Home screen - tool selection interface
+            CustomRoute<dynamic>(
+              path: 'home',
+              page: HomeRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              barrierColor: Colors.transparent,
+            ),
+            // Unicode explorer - character browsing and search
+            CustomRoute<dynamic>(
+              path: 'unicode-explorer',
+              page: UnicodeExplorerRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              barrierColor: Colors.transparent,
+            ),
+            // Multilingual tester - font testing and comparison
+            CustomRoute<dynamic>(
+              path: 'multilingual-tester',
+              page: MultilingualTesterRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              barrierColor: Colors.transparent,
+            ),
+            // Saved characters - user's favorite characters
+            CustomRoute<dynamic>(
+              path: 'saved',
+              page: SavedRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              barrierColor: Colors.transparent,
+            ),
+          ],
         ),
-
-        // Saved characters - user's favorite characters
-        AutoRoute(path: '/saved', page: SavedRoute.page),
       ];
 }

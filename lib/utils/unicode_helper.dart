@@ -27,6 +27,7 @@
 /// properties.
 library;
 
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/gen/fonts.gen.dart';

@@ -43,27 +43,27 @@
 /// ```
 library;
 
-/// Export for context extension utilities.
-///
-/// Provides convenient access to theme and padding values from
-/// BuildContext. Includes extensions for accessing text themes,
-/// safe area padding, and other context-dependent values.
-export 'context_extension.dart';
-
+/// Export for constant values used across the app.
+/// 
+export 'consts.dart';
 /// Export for debouncing utility.
 ///
 /// A utility class for debouncing function calls, useful for
 /// search inputs and other scenarios where you want to delay
 /// execution until user input stops.
 export 'debouncer.dart';
-
+/// Export for context extension utilities.
+///
+/// Provides convenient access to theme and padding values from
+/// BuildContext. Includes extensions for accessing text themes,
+/// safe area padding, and other context-dependent values.
+export 'extensions.dart';
 /// Export for localization extension utilities.
 ///
 /// Provides safe access to localization data from BuildContext
 /// with automatic fallback to English localization if the
 /// primary localization is unavailable.
 export 'localization_extensions.dart';
-
 /// Export for Unicode helper utilities.
 ///
 /// Provides utility functions for working with Unicode characters,

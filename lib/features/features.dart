@@ -30,6 +30,23 @@
 /// ```
 library;
 
+/// Exports the home_scroll feature module.
+///
+/// This barrel export file provides a single entry point for importing all
+/// home_scroll related functionality, including widgets, state management,
+/// and utilities associated with the home scrolling feature.
+///
+/// Usage:
+/// ```dart
+/// import 'package:gsoc_unicode_app/features/features.dart';
+/// ```
+///
+/// This makes all home_scroll exports available without needing to import
+/// the home_scroll module directly.
+export 'home_scroll/home_scroll.dart';
+
+
+
 /// Export for Unicode characters feature module.
 ///
 /// This export provides access to all components related to Unicode

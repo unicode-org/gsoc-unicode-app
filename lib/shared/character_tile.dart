@@ -80,6 +80,7 @@ class CharacterTile extends HookWidget {
     required this.script,
     required this.onTap,
     this.isSelected = false,
+    this.isControlCharacter = false,
     super.key,
   });
 
@@ -131,6 +132,12 @@ class CharacterTile extends HookWidget {
   /// highlighting the currently active character.
   final bool isSelected;
 
+  /// Whether this character is a control character.
+  ///
+  /// Control characters are special non-printing characters that have specific
+  /// functions in text processing, such as newline, tab, or bell characters.
+  final bool isControlCharacter;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -155,7 +162,7 @@ class CharacterTile extends HookWidget {
                         .copyWith(
                             fontSize: 24), // Larger font for better visibility
                   ),
-                  const SizedBox(width: 10),
+                  if (!isControlCharacter) const SizedBox(width: 10),
 
                   // Character name with overflow handling
                   Expanded(
@@ -172,6 +179,7 @@ class CharacterTile extends HookWidget {
                 ],
               ),
             ),
+
             const SizedBox(width: 10),
 
             // Unicode code point display

@@ -32,7 +32,7 @@ library;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
-import 'package:gsoc_unicode_app/utils/context_extension.dart';
+import 'package:gsoc_unicode_app/utils/utils.dart';
 
 /// A custom app bar with flexible configuration for title, actions, and
 /// visuals.
@@ -86,6 +86,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.isImagePresent = false,
     this.imageName,
     this.bottomPadding,
+    this.script,
     super.key,
   });
 
@@ -215,6 +216,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// loaded and displayed by Flutter's image loading system.
   final String? imageUrl;
 
+  /// The script associated with the title for font styling.
+  final String? script;
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -245,7 +249,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               minFontSize: 24,
               maxFontSize: 24,
               overflow: TextOverflow.ellipsis,
-              style: context.textTheme.displayLarge,
+              style: UnicodeHelper.getFontStylesForScript(script ?? '',
+                      fontWeight: FontWeight.bold, fontSize: 30)
+                  .first,
             ),
           ],
         ),

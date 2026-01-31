@@ -20,9 +20,12 @@ library;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsoc_unicode_app/app/app_router.dart';
 import 'package:gsoc_unicode_app/app/app_theme.dart';
+import 'package:gsoc_unicode_app/features/features.dart';
 import 'package:gsoc_unicode_app/shared/shared.dart';
 import 'package:gsoc_unicode_app/ui/ui.dart';
 import 'package:gsoc_unicode_app/utils/utils.dart';
@@ -39,7 +42,7 @@ import 'package:gsoc_unicode_app/utils/utils.dart';
 /// with proper spacing and typography. Each tool option is presented as a
 /// clickable card with descriptive text and an appropriate icon.
 @RoutePage()
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends HookWidget {
   /// Creates a [HomeScreen].
   const HomeScreen({super.key});
 
@@ -47,6 +50,22 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get localized strings for the current locale
     final locale = context.appLocalizations;
+
+    // Scroll controller for the home screen
+    final scrollController = useScrollController();
+
+    // Captures the cubit once (no context lookup during dispose)
+    final homeScrollCubit =
+        useMemoized(() => context.read<HomeScrollCubit>(), []);
+
+    // register and cleanup using the captured reference
+    useEffect(
+      () {
+        homeScrollCubit.setScrollController(scrollController);
+        return homeScrollCubit.clearScrollController;
+      },
+      [scrollController, homeScrollCubit],
+    );
 
     return Scaffold(
       backgroundColor: AppTheme.screenShade,
@@ -56,9 +75,8 @@ class HomeScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
-              // Optional for smaller devices
-              physics:
-                  const BouncingScrollPhysics(), // Only scrolls when required
+              controller: scrollController, // Add this to attach the controller
+              physics: const BouncingScrollPhysics(),
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
